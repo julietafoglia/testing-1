@@ -22,11 +22,11 @@ jobs:
       - run: 
           name: "Setup custom environment variables"
           command: |
-            echo 'export MY_ROOT_VAR="~/testing-1"' >> $ROOT_PATH
+            export ROOT_PATH=~/testing-1
       - run: 
           name: "Setup custom environment variables"
           command: |
-            echo 'export MY_ENV_VAR="stage"' >> $NODE_ENV
+            export NODE_ENV=stage
 
       # Download and cache dependencies
       - restore_cache:
