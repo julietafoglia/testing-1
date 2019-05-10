@@ -19,10 +19,9 @@ jobs:
 
     steps:
       - checkout
-      - run: 
-          name: "Setup custom environment variables"
-          command: |
-             echo 'export ROOT_PATH=~/testing-1'
+      environment:
+      NODE_ENV: "qa"
+      ROOT_PATH: "~/testing-1"
 
       # Download and cache dependencies
       - restore_cache:
