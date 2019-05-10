@@ -22,11 +22,7 @@ jobs:
       - run: 
           name: "Setup custom environment variables"
           command: |
-            export ROOT_PATH=~/testing-1
-      - run: 
-          name: "Setup custom environment variables"
-          command: |
-            export NODE_ENV=stage
+             echo 'export ROOT_PATH="~/testing-1"'
 
       # Download and cache dependencies
       - restore_cache:
