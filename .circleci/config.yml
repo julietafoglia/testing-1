@@ -35,4 +35,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: gulp maverick-smoke
+      - run: yarn test
