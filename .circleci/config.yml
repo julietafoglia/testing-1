@@ -19,6 +19,14 @@ jobs:
 
     steps:
       - checkout
+      - run: 
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export MY_ROOT_VAR="~/testing-1"' >> $ROOT_PATH
+      - run: 
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export MY_ENV_VAR="stage"' >> $NODE_ENV
 
       # Download and cache dependencies
       - restore_cache:
