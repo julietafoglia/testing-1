@@ -22,7 +22,7 @@ jobs:
       - run: 
           name: "Setup custom environment variables"
           command: |
-             echo 'export ROOT_PATH="~/testing-1"'
+             echo 'export ROOT_PATH=~/testing-1' >> $ROOT_PATH
 
       # Download and cache dependencies
       - restore_cache:
