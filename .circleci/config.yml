@@ -19,9 +19,6 @@ jobs:
 
     steps:
       - checkout
-      environment:
-      NODE_ENV: "qa"
-      ROOT_PATH: "~/testing-1"
 
       # Download and cache dependencies
       - restore_cache:
