@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Update PATH and Define Environment Variable at Runtime
           command: |
-           export ROOT_PATH=./testing-1
+           export ROOT_PATH="./testing-1"
 
 
       # Download and cache dependencies
