@@ -26,7 +26,7 @@ const targetEndpoint =
     require(rootPath + '/config/maverick/endpoints');
 const targetEnvironmentUsers =
     require(rootPath + '/config/users/' + process.env.NODE_ENV);
-const targetUser = 'lalala';
+const targetUser = targetEnvironmentUsers.admin;
 
 // shared test variable(s)
 let driver;
