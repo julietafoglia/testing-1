@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Update PATH and Define Environment Variable at Runtime
           command: |
-            echo 'export ROOT_PATH=~/ghostrider' >> $ROOT_PATH
+           export ROOT_PATH=~/ghostrider
 
 
       # Download and cache dependencies
