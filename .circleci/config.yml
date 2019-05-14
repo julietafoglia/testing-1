@@ -17,7 +17,7 @@ jobs:
 
     environment:
       NODE_ENV: "stage"
-      ROOT_PATH: "./"
+      ROOT_PATH: "~/testing-1"
 
 
 
