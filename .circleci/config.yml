@@ -19,6 +19,13 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Update PATH and Define Environment Variable at Runtime
+          command: |
+            echo 'export ROOT_PATH=~/ghostrider:$ROOT_PATH' >> $ROOT_PATH
+            echo 'export VERY_IMPORTANT=$(cat important_value)' >> $ROOT_PATH
+            source $ROOT_PATH
+
 
       # Download and cache dependencies
       - restore_cache:
