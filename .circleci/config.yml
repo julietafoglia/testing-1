@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
 
-      - image: circleci/node:chakracore-10.13.0
+      - image: circleci/node:chakracore-10.13.0-browsers
       - image: selenium/standalone-chrome
 
       # Specify service dependencies here if necessary
