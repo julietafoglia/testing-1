@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
 
       - image: circleci/node:chakracore-10.13.0
-      - image: selenium/standalone-chrome:latest
+      - image: selenium/standalone-chrome
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
