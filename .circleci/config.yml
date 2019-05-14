@@ -17,7 +17,7 @@ jobs:
 
     environment:
       NODE_ENV: "stage"
-      ROOT_PATH: "./repo"
+      ROOT_PATH: "/home/circleci/repo"
 
 
 
@@ -25,11 +25,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Update PATH and Define Environment Variable at Runtime
-          command: |
-           export ROOT_PATH="./testing-1"
-
 
       # Download and cache dependencies
       - restore_cache:
