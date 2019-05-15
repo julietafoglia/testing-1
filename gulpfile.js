@@ -116,7 +116,7 @@ function gulpTaskSetup(product, subset, grepPattern = '') {
         'json': {
             'stdout': `./results/${product}/report-${subset}.json`
         },
-        'mocha-jenkins-reporter': {
+        'mocha-circleci-reporter': {
             'stdout': `./tmp/${product}/report-${subset}.stdout`,
             'options': {
                 'junit_report_name': `${product} ${subset} test report`,
@@ -191,7 +191,7 @@ gulp.task('setup', function(done) {
 
     return gulp.src(bootstrapPaths, {read: false})
         .pipe(Plugins.mocha({
-            'reporter': 'mocha-jenkins-reporter',
+            'reporter': 'mocha-circleci-reporter',
             'reporterOptions': {
                 'junit_report_name': 'Bootstrap Setup Report',
                 'junit_report_path': './results/bootstrap/report-setup.xml',
@@ -238,7 +238,7 @@ gulp.task('teardown', function() {
     }
     return gulp.src(teardownPaths, {read: false})
         .pipe(Plugins.mocha({
-            'reporter': 'mocha-jenkins-reporter',
+            'reporter': 'mocha-circleci-reporter',
             'reporterOptions': {
                 'junit_report_name': 'Bootstrap Teardown Report',
                 'junit_report_path': './results/bootstrap/report-teardown.xml',
