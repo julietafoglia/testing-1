@@ -22,12 +22,15 @@ const SMOKE_PATTERN = '\\(\\+\\)';
 
 // set src paths
 const paths = {
-    all: ['tests/maverick/inventory-manager/**/*.js', '!**/ignore.*', '!node_modules/**'],
+    all: ['*.js', '**/*.js', '!**/ignore.*', '!node_modules/**'],
     bootstrap: ['bootstrap/**/*.js', '!bootstrap/teardown-*.js'],
     bootstrapDSP: ['bootstrap/demand/**/*.js'],
     bootstrapSSP: ['bootstrap/inventory/**/*.js'],
-    maverick: ['!tests/maverick/**/ignore.*',
-    'tests/maverick/inventory-manager/**/*.js'],
+    maverick: ['tests/maverick/**/*.js',
+        '!tests/maverick/**/ignore.*',
+        '!tests/maverick/inventory-manager/**/*.js',
+        '!tests/maverick/campaign-manager/reporting/**/*.js',
+        '!tests/maverick/campaign-manager/audience-form/**/*.js'],
     merlin: ['tests/merlin/**/*.js', 'tests/merlin/search/**/*.js',
         '!tests/merlin/**/ignore.*', '!tests/merlin/**/search/ignore.*'
     ],
@@ -133,97 +136,18 @@ function gulpTaskSetup(product, subset, grepPattern = '') {
         }));
 }
 
-/* Maverick Tasks */
-gulp.task('mav-all','Run all tests for MAVERICK.',
-    () => gulpTaskSetup('maverick', 'all'), options);
 
-gulp.task('maverick-debug', 'Run debug tests for MAVERICK.', () => {
-    gulpTaskSetup('maverick', 'debug', DEBUG_PATTERN);
-}, options);
-
-gulp.task('mav-smoke', 'Run smoke tests for MAVERICK.', () => {
-    gulpTaskSetup('maverick', 'smoke', MAVERICK_SMOKE_PATTERN);
-}, options);
-
-gulp.task('mav-prod', 'Run UI tests for MAVERICK.', () => {
-    gulpTaskSetup('maverickui', 'prod', MAVERICK_PROD_SMOKE_PATTERN);
-}, options);
-
-gulp.task('maverick-subset', 'Run subset tests for MAVERICK.', ['lint-subset'],
-    () => {
-        gulpTaskSetup('maverick', 'subset', argv.grep || '');
-    }, options);
-
-gulp.task('maverick-all', gulpSequence('setup', 'mav-all', 'teardown'));
-
-gulp.task('maverick-smoke', gulpSequence('setup', 'mav-smoke'));
-
-
-/* Merlin Tasks */
-gulp.task('merlin-all', 'Run all tests for MERLIN.', () => {
-    gulpTaskSetup('merlin', 'all');
-}, options);
-
-gulp.task('merlin-debug', 'Run debug tests for MERLIN.', () => {
-    gulpTaskSetup('merlin', 'debug', DEBUG_PATTERN);
-}, options);
-
-gulp.task('merlin-smoke', 'Run smoke tests for MERLIN.', () => {
-    gulpTaskSetup('merlin', 'smoke', MERLIN_SMOKE_PATTERN);
-}, options);
-
-gulp.task('merlin-subset', 'Run subset tests for MERLIN.', ['lint-subset'],
-    () => {
-        gulpTaskSetup('merlin', 'subset', argv.grep || '');
-    }, options);
-
-/* Reporting Tasks */
-gulp.task('reporting-all', 'Run all tests for REPORTING.', () => {
-    gulpTaskSetup('reporting', 'all');
-}, options);
-
-gulp.task('reporting-debug', 'Run debug tests for REPORTING.', () => {
-    gulpTaskSetup('reporting', 'debug', DEBUG_PATTERN);
-}, options);
-
-gulp.task('reporting-smoke', 'Run smoke tests for REPORTING.', () => {
-    gulpTaskSetup('reporting', 'smoke', SMOKE_PATTERN);
-}, options);
-
-gulp.task('reporting-subset', 'Run subset tests for REPORTING.',['lint-subset'],
-    () => {
-        gulpTaskSetup('reporting', 'subset', argv.grep || '');
-    }, options);
-
-
-/* Salesforce Tasks */
-gulp.task('sf-all', 'Run all tests for SALESFORCE.', () => {
-    gulpTaskSetup('salesforce', 'all');
-}, options);
-
-gulp.task('sf-debug', 'Run debug tests for SALESFORCE.', () => {
-    gulpTaskSetup('salesforce', 'debug', DEBUG_PATTERN);
-}, options);
-
-gulp.task('sf-smoke', 'Run smoke tests for SALESFORCE.', () => {
-    gulpTaskSetup('salesforce', 'smoke', SMOKE_PATTERN);
-}, options);
-
-gulp.task('sf-subset', 'Run subset tests for SALESFORCE.',
-    () => {
-        gulpTaskSetup('salesforce', 'subset', argv.grep || '');
-    }, options);
 
 
 // eslint - all
-gulp.task('lint-all', 'Lint all JS files.', () =>
+gulp.task('lint-all', function() {
     gulp.src(paths.all)
         .pipe(Plugins.eslint())
         .pipe(Plugins.eslint.format())
-);
+    });
 
 // eslint - subset
-gulp.task('lint-subset', 'Lint a subset of JS files.', () => {
+gulp.task('lint-subset', function() {
     // default to all paths if glob pattern does not exist
     let globPattern = argv.glob || paths.all;
     return gulp.src(globPattern)
@@ -232,7 +156,7 @@ gulp.task('lint-subset', 'Lint a subset of JS files.', () => {
 }, options);
 
 // eslint - watch
-gulp.task('lint-watch', 'Watch and lint changed JS files.', () => {
+gulp.task('lint-watch', function() {
     // Lint only files that change after this watch starts
     const lintAndPrint = Plugins.eslint();
     // format results with each file, since this stream will not end
@@ -247,7 +171,7 @@ gulp.task('lint-watch', 'Watch and lint changed JS files.', () => {
 });
 
 // bootstrap - setup
-gulp.task('setup', 'Run bootstrap entities setup.', () => {
+gulp.task('setup', function(done) {
     process.env.ROOT_PATH = __dirname;
     envSetup();
     let bootstrapPaths,
@@ -275,10 +199,12 @@ gulp.task('setup', 'Run bootstrap entities setup.', () => {
                 'junit_report_packages': 1
             }
         }));
+    
+    done();
 }, options);
 
 // bootstrap - teardown
-gulp.task('teardown', 'Run bootstrap entities teardown.', () => {
+gulp.task('teardown', function() {
     // add root_dir to simplify path lookups
     process.env.ROOT_PATH = __dirname;
     // set environment
@@ -323,10 +249,10 @@ gulp.task('teardown', 'Run bootstrap entities teardown.', () => {
 }, options);
 
 // bootstrap - view
-gulp.task('view', 'View map of saved bootstrap entities.', () => {
+gulp.task('view', function(done) {
     let entitiesObj;
     try {
-        entitiesObj = require('./bootstrap/entities-ssp.json');
+        entitiesObj = require('./bootstrap/entities-dsp.json');
     } catch (err) {
         process.stdout.write(
             '\nNo entities file found. ' +
@@ -342,9 +268,90 @@ gulp.task('view', 'View map of saved bootstrap entities.', () => {
         numberColor: 'magenta'
     };
     process.stdout.write(prettyjson.render(entitiesObj, options));
+    done();
 });
 
 // bootstrap - debug
-gulp.task('bootstrap-debug', 'Run debug tests for MAVERICK.', () => {
+gulp.task('bootstrap-debug', function() {
     gulpTaskSetup('bootstrap', 'debug', DEBUG_PATTERN);
+}, options);
+
+
+/* Maverick Tasks */
+gulp.task('mav-all', function() {
+    () => gulpTaskSetup('maverick', 'all')}, options);
+
+gulp.task('maverick-debug', function() {
+    gulpTaskSetup('maverick', 'debug', DEBUG_PATTERN);
+}, options);
+
+gulp.task('mav-smoke', function(done) {
+    gulpTaskSetup('maverick', 'smoke', MAVERICK_SMOKE_PATTERN);
+    done();
+}, options);
+
+gulp.task('mav-prod', function() {
+    gulpTaskSetup('maverickui', 'prod', MAVERICK_PROD_SMOKE_PATTERN);
+}, options);
+
+gulp.task('maverick-subset', function(done) {
+        gulpTaskSetup('maverick', 'subset', argv.grep || '');
+        done();
+    }, options);
+
+gulp.task('maverick-all', gulp.series('setup', 'mav-all', 'teardown'));
+
+gulp.task('maverick-smoke', gulp.series('setup', 'mav-smoke'));
+
+
+/* Merlin Tasks */
+gulp.task('merlin-all', function() {
+    gulpTaskSetup('merlin', 'all');
+}, options);
+
+gulp.task('merlin-debug', function() {
+    gulpTaskSetup('merlin', 'debug', DEBUG_PATTERN);
+}, options);
+
+gulp.task('merlin-smoke', function() {
+    gulpTaskSetup('merlin', 'smoke', MERLIN_SMOKE_PATTERN);
+}, options);
+
+gulp.task('merlin-subset', gulp.series('lint-subset', function() {
+        gulpTaskSetup('merlin', 'subset', argv.grep || '');
+    }), options);
+
+/* Reporting Tasks */
+gulp.task('reporting-all', function() {
+    gulpTaskSetup('reporting', 'all');
+}, options);
+
+gulp.task('reporting-debug', function() {
+    gulpTaskSetup('reporting', 'debug', DEBUG_PATTERN);
+}, options);
+
+gulp.task('reporting-smoke', function() {
+    gulpTaskSetup('reporting', 'smoke', SMOKE_PATTERN);
+}, options);
+
+gulp.task('reporting-subset', gulp.series('lint-subset', function() {
+        gulpTaskSetup('reporting', 'subset', argv.grep || '');
+    }), options);
+
+
+/* Salesforce Tasks */
+gulp.task('sf-all', function() {
+    gulpTaskSetup('salesforce', 'all');
+}, options);
+
+gulp.task('sf-debug', function() {
+    gulpTaskSetup('salesforce', 'debug', DEBUG_PATTERN);
+}, options);
+
+gulp.task('sf-smoke', function() {
+    gulpTaskSetup('salesforce', 'smoke', SMOKE_PATTERN);
+}, options);
+
+gulp.task('sf-subset', function() {
+        gulpTaskSetup('salesforce', 'subset', argv.grep || '');
 }, options);
