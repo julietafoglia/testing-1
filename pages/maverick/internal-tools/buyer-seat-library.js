@@ -13,7 +13,8 @@ const key = webdriver.Key;
 
 const TITLE_BUYER_SEAT = By.xpath('//h1[text() = "Buyer Seat"]');
 const INPUT_SEARCH = By.css('input[placeholder="Search"]');
-const FILTER_OPTION_REMOVE = By.css('.button--small .icon.icon--exit');
+const FILTER_OPTION_REMOVE = (text) =>
+    By.xpath(`//span[contains(text(),"${text}")]`);
 const FIRST_CONTROL_BUTTON = By.xpath('//button[text() = "First"]');
 const PREVIOUS_CONTROL_BUTTON = By.xpath('//button[text() = "Previous"]');
 const NEXT_CONTROL_BUTTON = By.xpath('//button[text() = "Next"]');
@@ -77,9 +78,9 @@ BuyerSeatLibraryPage.prototype.getInputSearch = function(){
     return this.findElement(INPUT_SEARCH);
 };
 
-BuyerSeatLibraryPage.prototype.getRemoveFilterOption = function(){
-    this.waitUntilVisible(FILTER_OPTION_REMOVE);
-    return this.findElement(FILTER_OPTION_REMOVE);
+BuyerSeatLibraryPage.prototype.getRemoveFilterOption = function(text){
+    this.waitUntilVisible(FILTER_OPTION_REMOVE(text));
+    return this.findElement(FILTER_OPTION_REMOVE(text));
 };
 
 BuyerSeatLibraryPage.prototype.getFirstControlButton = function(){
@@ -195,8 +196,8 @@ BuyerSeatLibraryPage.prototype.getColumnModified = function(){
 };
 
 
-BuyerSeatLibraryPage.prototype.noRemoveFilterOptionDisplayed = function() {
-    return this.elementNotLocated(FILTER_OPTION_REMOVE);
+BuyerSeatLibraryPage.prototype.noRemoveFilterOptionDisplayed = function(text) {
+    return this.elementNotLocated(FILTER_OPTION_REMOVE(text));
 };
 
 BuyerSeatLibraryPage.prototype.getFirstBuyerNameOnTable = function(){
@@ -230,8 +231,8 @@ BuyerSeatLibraryPage.prototype.setInputSearch = function(value) {
     return this.waitUntilDisabled(NEXT_CONTROL_BUTTON);
 };
 
-BuyerSeatLibraryPage.prototype.removeFilterOption = function(){
-    return this.waitAndClick(FILTER_OPTION_REMOVE);
+BuyerSeatLibraryPage.prototype.removeFilterOption = function(text){
+    return this.waitAndClick(FILTER_OPTION_REMOVE(text));
 };
 
 BuyerSeatLibraryPage.prototype.clickFirstPageTableControl = function(){

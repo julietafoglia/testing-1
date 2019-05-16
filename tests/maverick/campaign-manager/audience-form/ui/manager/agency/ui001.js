@@ -11,12 +11,6 @@ const usersTargetEnvironment =
 const targetUser = usersTargetEnvironment.admin;
 const driverTimeOut = 0;
 
-// bootstrap variables
-const entitiesFile =
-    require(rootPath + '/bootstrap/entities-dsp.json');
-const entitiesObj = entitiesFile;
-const targetAdv = entitiesObj.agency001.children.advertiser001;
-
 let driver; // initialized during test runtime
 
 // selenium page object(s)

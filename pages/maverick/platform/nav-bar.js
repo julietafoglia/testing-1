@@ -9,7 +9,7 @@ const webdriver = require('selenium-webdriver');
 const By = webdriver.By;
 
 // header elements
-const PROFILE_DDM = By.xpath('//profile/div/h4/span[2]');
+const PROFILE_DDM = By.xpath('//profile/div/h4/span');
 const LOGOUT_BTN = By.css('.logout');
 const ACCOUNTS_TOTAL = By.xpath('//profile//h5/span');
 const SEARCH_BOX = By.css('global-search-input div div input');
@@ -20,7 +20,6 @@ const INTERNAL_TOOLS_BUTTON = By.xpath('//span[text() = "Internal Tools"]');
 const REPORTING_BUTTON = By.xpath('//span[text() = "Reporting"]');
 
 // profile drop down elements
-const USER_ICON = By.css('span.icon.icon--xxxl');
 const USER_NAME = By.css('.user-info h3.ellipsis');
 const USER_EMAIL = By.css('.user-info div.supporting');
 const VIEW_ACCOUNTS = By.xpath('//button[text()="View Selected Accounts"]');
@@ -60,11 +59,6 @@ NavBar.prototype.getLogoutButton = function() {
 NavBar.prototype.getSearchBox = function() {
     this.waitUntilVisible(SEARCH_BOX);
     return this.findElement(SEARCH_BOX);
-};
-
-NavBar.prototype.getUserIcon = function() {
-    this.waitUntilVisible(USER_ICON);
-    return this.findElement(USER_ICON);
 };
 
 NavBar.prototype.getUserName = function() {

@@ -1,21 +1,19 @@
 'use strict';
 
-// vendor dependencies
-const moment = require('moment');
-
 // common runtime variables
 const rootPath = process.env.ROOT_PATH;
 const usersTargetEnvironment =
     require(rootPath + '/config/users/' + process.env.NODE_ENV);
 const targetUser = usersTargetEnvironment.admin;
-const driverTimeOut = 0;
-const shortTimeStamp = '@' + moment().format('YYYY-MM-DDTHH:mm');
+const driverTimeOut = 5000;
 
 // bootstrap variables
 const entitiesFile = require(rootPath + '/bootstrap/entities-dsp.json');
 const entitiesObj = entitiesFile;
-const targetAdv = entitiesObj.agency001.children.advertiser001;
+const targetAdvertiser = entitiesObj.agency001.children.advertiser001;
+const targetAudience = targetAdvertiser.children.audience001;
 
+// selenium runtime variables
 let driver; // initialized during test runtime
 
 // selenium page object(s)
@@ -26,8 +24,11 @@ let AudLibrary = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-library');
 let AudPage = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-form');
+let AudCards = require(rootPath + '/pages/maverick/campaign-manager/' +
+    'audience-cards');
 let audLibrary;
 let audPage;
+let audCards;
 let sideBar;
 let loginPage;
 
@@ -38,15 +39,10 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 // fixtures(s)
-const testFixture001 = rootPath + '/fixtures/common/audience/create004.csv';
-const testFixture002 =
-    require(rootPath + '/fixtures/common/audience/create001');
-let testData001 = Object.assign({}, testFixture002);
-testData001.name = testData001.name + shortTimeStamp + ' (MD5)';
+const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-
-describe('{{MAVERICK}} /audience-form {CREATE} @MANAGER >>> ' +
-    '(+) upload audience - MD5 file >>>', function() {
+describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+    '(+) remove from segment >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -55,6 +51,7 @@ describe('{{MAVERICK}} /audience-form {CREATE} @MANAGER >>> ' +
         driver = driverBuilder();
         audPage = new AudPage(driver);
         audLibrary = new AudLibrary(driver);
+        audCards = new AudCards(driver);
         sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
         driver.manage().deleteAllCookies().then(() => {
@@ -71,32 +68,17 @@ describe('{{MAVERICK}} /audience-form {CREATE} @MANAGER >>> ' +
 
     it('it should navigate to audiences page', function(done) {
         sideBar.clickAudiencesLink();
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('should create audience', function(done) {
         audLibrary.clickNewAudience();
-        audPage.setInputAdvertiser(targetAdv.name);
-        audPage.setInputAudienceName(testData001.name);
-        audPage.setInputFile(testFixture001);
-        audPage.clickDataType();
-        audPage.clickSpan('MD5');
+        audCards.clickRemoveFromSegment();
+        driver.sleep(driverTimeOut).then(() => done());
+    });
 
-        audPage.clickCheckMerkle();
+    it('should fill required fields', function(done) {
+        // basic info
+        audPage.setInputChooseAudience(targetAudience.refId);
+        audPage.setInputFile(testData001);
         audPage.clickUpload();
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('audience should be displayed in Audiences view', function(done) {
-        audLibrary.clickCreated();
-        audLibrary.getAudienceName(testData001.name);
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('merkle checkbox should be checked after uploading', function(done) {
-        audLibrary.clickAudienceName(testData001.name);
-        audLibrary.clickLinkAdd();
-        audPage.getCheckMerkle();
+        audPage.waitForAlert();
         driver.sleep(driverTimeOut).then(() => done());
     });
 

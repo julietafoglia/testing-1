@@ -23,8 +23,6 @@ let driver; // initialized during test runtime
 // selenium page object(s)
 //  initialized during test runtime
 let LoginPage = require(rootPath + '/pages/maverick/platform/login');
-let AudEditPage = require(rootPath + '/pages/maverick/campaign-manager/' +
-    'audience-edit-form');
 let SideBar = require(rootPath + '/pages/maverick/platform/side-bar');
 let AudLibrary = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-library');
@@ -36,7 +34,6 @@ let audLibrary;
 let audPage;
 let audCards;
 let sideBar;
-let audEditPage;
 let loginPage;
 
 // maverick runtime variables
@@ -61,7 +58,6 @@ describe('{{MAVERICK}} /audience-form {UI} @SS-AGENCY >>> ' +
         audCards = new AudCards(driver);
         sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
-        audEditPage = new AudEditPage(driver);
         driver.manage().deleteAllCookies().then(() => {
             done();
         }, (err) => {
@@ -106,7 +102,7 @@ describe('{{MAVERICK}} /audience-form {UI} @SS-AGENCY >>> ' +
         expect(audPage.getSpan('SHA1')).to.exist;
         expect(audPage.getSpan('SHA2')).to.exist;
         audPage.clickDataType();
-        
+
         expect(audPage.getButtonAction()).to.exist;
         expect(audPage.getSpan('Add Hashes to Audience')).to.exist;
         audPage.clickAction();

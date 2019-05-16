@@ -34,7 +34,6 @@ let audPage;
 let audCards;
 let sideBar;
 let loginPage;
-let targetAdvName = 'iniTestAdv (Linked_Ads 2)';
 
 // maverick runtime variables
 const targetEnvironment =

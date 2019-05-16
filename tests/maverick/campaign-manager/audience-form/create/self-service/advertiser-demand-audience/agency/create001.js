@@ -9,12 +9,16 @@ const usersTargetEnvironment = require(rootPath +
     '/bootstrap/entities-dsp.json');
 const targetUser = usersTargetEnvironment.agency002.children.agencyUser001;
 const driverTimeOut = 0;
-const shortTimeStamp = '@' + moment().format('YYYY-MM-DDTHH:mm');
+const timeStamp = '@' + moment().format('YYYY-MM-DDTHH:mm');
 
 // bootstrap variables
-const entitiesFile = require(rootPath + '/bootstrap/entities-dsp.json');
+const entitiesFile =
+    require(rootPath + '/bootstrap/entities-dsp.json');
 const entitiesObj = entitiesFile;
 const targetAdv = entitiesObj.agency002.children.advertiser001;
+const testFixture = require(rootPath + '/fixtures/common/audience/create001');
+let testData002 = Object.assign({}, testFixture);
+const audienceName = testData002.name + timeStamp;
 
 let driver; // initialized during test runtime
 
@@ -24,10 +28,13 @@ let LoginPage = require(rootPath + '/pages/maverick/platform/login');
 let SideBar = require(rootPath + '/pages/maverick/platform/side-bar');
 let AudLibrary = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-library');
+let AudCards = require(rootPath + '/pages/maverick/campaign-manager/' +
+    'audience-cards');
 let AudPage = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-form');
 let audLibrary;
 let audPage;
+let audCards;
 let sideBar;
 let loginPage;
 
@@ -38,15 +45,10 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 // fixtures(s)
-const testFixture001 = rootPath + '/fixtures/common/audience/create005.txt';
-const testFixture002 =
-    require(rootPath + '/fixtures/common/audience/create001');
-let testData001 = Object.assign({}, testFixture002);
-testData001.name = testData001.name + shortTimeStamp + ' (SHA1)';
+const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-
-describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
-    '(+) upload audience - SHA1 file >>>', function() {
+describe('{{MAVERICK}} /audience-form {create} @SS-AGENCY >>> ' +
+    '(+) create live audience >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -55,6 +57,7 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
         driver = driverBuilder();
         audPage = new AudPage(driver);
         audLibrary = new AudLibrary(driver);
+        audCards = new AudCards(driver);
         sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
         driver.manage().deleteAllCookies().then(() => {
@@ -69,26 +72,19 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
             .then(() => done());
     });
 
-    it('it should navigate to audiences page', function(done) {
+    it('it should navigate to live audience page', function(done) {
         sideBar.clickAudiencesLink();
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('should create audience', function(done) {
         audLibrary.clickNewAudience();
-        audPage.setInputAdvertiser(targetAdv.name);
-        audPage.setInputAudienceName(testData001.name);
-        audPage.setInputFile(testFixture001);
-        audPage.clickDataType();
-        audPage.clickSpan('SHA1');
-        audPage.clickUpload();
+        audCards.clickCreateLiveAudience();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    it('audience should be displayed in audience view', function(done) {
-        audLibrary.clickCreated();
-        audLibrary.waitUntilSpinnerDissapear();
-        audLibrary.getAudienceName(testData001.name);
+    it('it should fill all required fields', function(done) {
+        audPage.setInputAdvertiser(targetAdv.name);
+        audPage.setInputAudienceName(audienceName);
+        audPage.setInputFile(testData001);
+        audPage.clickUpload();
+        audPage.waitForAlert();
         driver.sleep(driverTimeOut).then(() => done());
     });
 

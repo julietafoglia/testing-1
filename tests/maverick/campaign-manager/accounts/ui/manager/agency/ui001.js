@@ -93,9 +93,9 @@ describe('<SMOKE-PROD> {{MAVERICK}} /accounts {ui} @MANAGER >>> ' +
     });
 
     it('verify exact match of Advertiser Name', function(done) {
-        setupPage.setAdvInput('LiveIntent (LBM)');
-        driver.sleep(twoSecTO); // waiting for the table to refresh
-        setupPage.getDivText('LiveIntent (LBM)').then(function(text) {
+        setupPage.setAdvInput('LiveIntent (Placeholder)');
+        driver.sleep(twoSecTO); // waiting for the table to refresh 
+        setupPage.getDivText('LiveIntent (Placeholder)').then(function(text) {
             expect(text).to.exist;
         })
             .then(() => done());

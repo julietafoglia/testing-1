@@ -37,7 +37,6 @@ let audDynPage;
 let audCards;
 let sideBar;
 let loginPage;
-let targetAdvName = 'iniTestAdv (Linked_Ads 2)';
 
 // maverick runtime variables
 const targetEnvironment =
@@ -81,11 +80,12 @@ describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    it('Event based audience modal should have all the elements', function(done) {
+    it('Event based audience modal should have all the' +
+        ' elements', function(done) {
         // basic info
         expect(audPage.getInputAudienceName()).to.exist;
         expect(audPage.getInputAdvertiser()).to.exist;
-        audPage.setInputAdvertiser(targetAdvName);
+        audPage.setInputAdvertiser(targetAdv.name);
 
         // segmentation
         expect(audDynPage.getButtonAudienceMembers()).to.exist;
@@ -112,12 +112,12 @@ describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
 
         // conversion tracker
         expect(audDynPage.getButtonPixel()).to.exist;
-       
+
         // sharing
         expect(audPage.getInputDoNotShare()).to.exist;
         expect(audPage.getInputShareSpecific()).to.exist;
         expect(audPage.getInputShareAcross()).to.exist;
-        
+
         driver.sleep(driverTimeOut).then(() => done());
     });
 

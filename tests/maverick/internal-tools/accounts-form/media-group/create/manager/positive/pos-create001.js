@@ -43,7 +43,7 @@ const driverBuilder = require(rootPath + '/helpers/driver-builder');
 let accountTestFixture =
     require(rootPath + '/fixtures/common/media-group/create005');
 account = Object.assign({}, accountTestFixture);
-account.name += timeStamp;
+account.name += timeStamp + 'pos';
 account.salesforceId = timeStamp + '3';
 account.dspFee = 5;
 account.directSoldFee = 1;
@@ -73,7 +73,7 @@ describe('<SMOKE> {{MAVERICK}} /accounts-form {CREATE} @MANAGER >>> ' +
         loginPage.login(targetServer, targetUser);
         navBar.clickInternalTools();
         usersLibrary.clickAccountsSideBar();
-        accountsLibrary.waitUntilSpinnerDissapear();
+        accountsLibrary.waitSpinnerUntilStale();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
@@ -89,6 +89,7 @@ describe('<SMOKE> {{MAVERICK}} /accounts-form {CREATE} @MANAGER >>> ' +
     });
 
     it('should display created Media Group', function(done) {
+        accountsLibrary.waitUntilFilterNotVisible();
         accountsLibrary.clickAgenciesView();
         accountsLibrary.clickMediaGroupView();
         accountsLibrary.setSearchField(account.name);

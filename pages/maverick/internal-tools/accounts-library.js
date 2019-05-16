@@ -19,7 +19,8 @@ const CREATE_ACCOUNT_BUTTON = By.xpath('//button[text()="Create Account"]');
 const AGENCIES_CURRENT_VIEW = By.xpath('//span[text()="Agencies"]');
 const MEDIA_GROUPS_CURRENT_VIEW = By.xpath('//span[text()="Media Groups"]');
 const SEARCH_ACCOUNT = By.css('input[placeholder="Search"]');
-const FILTER_OPTION_REMOVE = By.css('.button--small .icon.icon--exit');
+const FILTER_OPTION_REMOVE = (text) =>
+    By.xpath(`//span[contains(text(),"${text}")]`);
 const FIRST_CONTROL_BUTTON = By.xpath('//button[text() = "First"]');
 const PREVIOUS_CONTROL_BUTTON = By.xpath('//button[text() = "Previous"]');
 const NEXT_CONTROL_BUTTON = By.xpath('//button[text() = "Next"]');
@@ -71,8 +72,8 @@ AccountsLibraryPage.prototype.getSearchField = function(){
     return this.getElement(SEARCH_ACCOUNT);
 };
 
-AccountsLibraryPage.prototype.getRemoveFilterOption = function(){
-    return this.getElement(FILTER_OPTION_REMOVE);
+AccountsLibraryPage.prototype.getRemoveFilterOption = function(spanText){
+    return this.getElement(FILTER_OPTION_REMOVE(spanText));
 };
 
 AccountsLibraryPage.prototype.noRemoveFilterOptionDisplayed = function() {
@@ -216,8 +217,8 @@ AccountsLibraryPage.prototype.setSearchField = function(value) {
     return this.waitUntilFilterNotVisible();
 };
 
-AccountsLibraryPage.prototype.removeFilterOption = function(){
-    return this.waitAndClick(FILTER_OPTION_REMOVE);
+AccountsLibraryPage.prototype.removeFilterOption = function(spanText){
+    return this.waitAndClick(FILTER_OPTION_REMOVE(spanText));
 };
 
 AccountsLibraryPage.prototype.clickFirstPageTableControl = function(){

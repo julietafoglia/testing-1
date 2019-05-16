@@ -1,16 +1,27 @@
 'use strict';
 
+// vendor dependencies
+const chai = require('chai');
+const expect = chai.expect;
+const moment = require('moment');
+
 // common runtime variables
 const rootPath = process.env.ROOT_PATH;
-const usersTargetEnvironment = require(rootPath +
-    '/bootstrap/entities-dsp.json');
-const targetUser = usersTargetEnvironment.agency002.children.agencyUser001;
-const driverTimeOut = 0;
+const usersTargetEnvironment =
+    require(rootPath + '/config/users/' + process.env.NODE_ENV);
+const targetUser = usersTargetEnvironment.admin;
+const driverTimeOut = 5000;
+const timeStamp =
+    '@' + moment().format('YYYY-MM-DDTHH:mm');
 
 // bootstrap variables
 const entitiesFile = require(rootPath + '/bootstrap/entities-dsp.json');
 const entitiesObj = entitiesFile;
-const targetAdv = entitiesObj.agency002.children.advertiser001;
+const targetAdvertiser = entitiesObj.agency002.children.advertiser001;
+const targetAudience = targetAdvertiser.children.audience001;
+const testFixture = require(rootPath + '/fixtures/common/audience/create001');
+let testData002 = Object.assign({}, testFixture);
+const audienceName = 'prob_expanded' + testData002.name + timeStamp;
 
 let driver; // initialized during test runtime
 
@@ -20,10 +31,13 @@ let LoginPage = require(rootPath + '/pages/maverick/platform/login');
 let SideBar = require(rootPath + '/pages/maverick/platform/side-bar');
 let AudLibrary = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-library');
+let AudCards = require(rootPath + '/pages/maverick/campaign-manager/' +
+    'audience-cards');
 let AudPage = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-form');
 let audLibrary;
 let audPage;
+let audCards;
 let sideBar;
 let loginPage;
 
@@ -33,11 +47,8 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-// fixtures(s)
-const testFixture001 = rootPath + '/fixtures/common/audience/create004.csv';
-
-describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
-    '(+) upload audience - MatchRate MD5 file >>>', function() {
+describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+    '(+) Expand probabilistically >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -46,6 +57,7 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
         driver = driverBuilder();
         audPage = new AudPage(driver);
         audLibrary = new AudLibrary(driver);
+        audCards = new AudCards(driver);
         sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
         driver.manage().deleteAllCookies().then(() => {
@@ -60,27 +72,27 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY >>> ' +
             .then(() => done());
     });
 
-    it('it should navigate to audiences page', function(done) {
+    it('it should navigate to prob expansion audience page', function(done) {
         sideBar.clickAudiencesLink();
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('should create audience', function(done) {
         audLibrary.clickNewAudience();
-        audPage.setInputAdvertiser(targetAdv.name);
-        audPage.clickAction();
-        audPage.clickSpan('Get Match Rate');
-        audPage.clickDataTypeRate();
-        audPage.clickSpan('MD5');
-        audPage.setInputFile(testFixture001);
-        audPage.clickUpload();
+        audCards.clickExpansionProb();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    /* it('audience should be displayed in file view', function(done) {
-        audLibrary.clickMatchView();
-        audLibrary.getSpan(fileName);
+    it('it should fill required fields', function(done) {
+        audPage.setInputAdvertiser(targetAdvertiser.name);
+        audPage.setInputChooseAudience(targetAudience.refId);
+        audPage.setInputAudienceName(audienceName);
+        audPage.clickUpload();
+        audPage.waitForAlert();
         driver.sleep(driverTimeOut).then(() => done());
-    });*/
+    });
+
+    it('audience should be expanded', function(done) {
+        sideBar.clickAudiencesLink();
+        audLibrary.setInputSearch(audienceName);
+        expect(audLibrary.getLinkText(audienceName)).to.exist;
+        driver.sleep(driverTimeOut).then(() => done());
+    });
 
 });

@@ -79,8 +79,7 @@ BasePage.prototype.waitUntilNotVisible = function(locator) {
 };
 
 BasePage.prototype.waitUntilStale = function(locator) {
-    this.driver.wait(until.stalenessOf(this.findElement(locator), TIMEOUT));
-    return this;
+    return this.driver.sleep(fiveSecondTO);
 };
 
 BasePage.prototype.waitUntilFilterStale = function() {
@@ -382,6 +381,10 @@ BasePage.prototype.waitForAlert = function() {
 BasePage.prototype.getAlert = function() {
     this.waitUntilVisible(ALERT_SUCCESS);
     return this.findElement(ALERT_SUCCESS);
+};
+
+BasePage.prototype.waitForAlertNoFail = function() {
+    return this.waitToLocateNoFail(ALERT_SUCCESS);
 };
 
 BasePage.prototype.getLinkContainsText = function(elementText) {

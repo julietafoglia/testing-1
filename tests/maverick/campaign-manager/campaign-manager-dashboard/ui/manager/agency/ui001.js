@@ -57,7 +57,6 @@ describe('<SMOKE-PROD> {{MAVERICK}} /campaign-dashboard {UI} @MANAGER >>> ' +
 
     it('should assert profile drop down elements when clicked', function(done) {
         navItems.clickProfile();
-        expect(navItems.getUserIcon()).to.exist;
         expect(navItems.getUserName()).to.exist;
         expect(navItems.getUserEmail()).to.exist;
         navItems.clickProfile();

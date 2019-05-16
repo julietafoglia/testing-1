@@ -83,14 +83,6 @@ describe('<SMOKE-PROD> {{MAVERICK}} /rtb-partners-form {UI} @MANAGER >>> (+) ' +
         expect(rtbPartnersFormPage.getStatusDropdownActive()).to.exist;
         expect(rtbPartnersFormPage.getStatusDropdownInactive()).to.exist;
         rtbPartnersFormPage.clickStatusDropdownButton();
-        expect(rtbPartnersFormPage.getBidTypeLabel()).to.exist;
-        expect(rtbPartnersFormPage.getBidTypeDropdownButton()).to.exist;
-        rtbPartnersFormPage.clickBidTypeDropdownButton();
-        expect(rtbPartnersFormPage.getBidTypeDropdownDisplayInput()).to.exist;
-        expect(rtbPartnersFormPage.getBidTypeDropdownDisplayText()).to.exist;
-        expect(rtbPartnersFormPage.getBidTypeDropdownNativeInput()).to.exist;
-        expect(rtbPartnersFormPage.getBidTypeDropdownNativeInput()).to.exist;
-        rtbPartnersFormPage.clickBidTypeDropdownButton();
         expect(rtbPartnersFormPage.getParentDspLabel()).to.exist;
         expect(rtbPartnersFormPage.getParentDspInput()).to.exist;
         expect(rtbPartnersFormPage.getMatchUrlLabel()).to.exist;
@@ -147,28 +139,6 @@ describe('<SMOKE-PROD> {{MAVERICK}} /rtb-partners-form {UI} @MANAGER >>> (+) ' +
         rtbPartnersFormPage.getStatusButtonDropdown().getText()
             .then(function(text) {
                 expect(text).to.equal(rtbPartnersFormPage.getStatusInactive());
-            });
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('should display the selected or selected options in bid type ' +
-        'dropdown button', function(done){
-        rtbPartnersFormPage.clickBidTypeDropdownButton();
-        rtbPartnersFormPage.clickBidTypeDisplay();
-        rtbPartnersFormPage.getBidTypeDropdownButton().getText()
-            .then(function(text) {
-                expect(text).to.equal(rtbPartnersFormPage.getBidTypeDisplay());
-            });
-        rtbPartnersFormPage.clickBidTypeNative();
-        rtbPartnersFormPage.getBidTypeDropdownButton().getText()
-            .then(function(text) {
-                expect(text).to.equal(rtbPartnersFormPage.getBidTypeDisplay() +
-                    ', ' + rtbPartnersFormPage.getBidTypeNative());
-            });
-        rtbPartnersFormPage.clickBidTypeDisplay();
-        rtbPartnersFormPage.getBidTypeDropdownButton().getText()
-            .then(function(text) {
-                expect(text).to.equal(rtbPartnersFormPage.getBidTypeNative());
             });
         driver.sleep(driverTimeOut).then(() => done());
     });
@@ -337,17 +307,17 @@ describe('<SMOKE-PROD> {{MAVERICK}} /rtb-partners-form {UI} @MANAGER >>> (+) ' +
 
     it('should show expected element after filtering ' +
     'Parent DSP', function(done) {
-        rtbPartnersFormPage.findParentDsp(rtbPartnersFormPage
-            .getParentDspSearch());
+        rtbPartnersFormPage.findParentDsp('initest');
         rtbPartnersFormPage.getParentDspOptions().getText()
             .then(function(text){
                 rtbPartnersFormPage.setInputParentDspSearch(text);
+
                 rtbPartnersFormPage.getParentDspSelected().getText()
                     .then(function(filter){
                         expect(filter).to.equal(text);
                     });
+
             });
         driver.sleep(driverTimeOut).then(() => done());
     });
-
 });

@@ -87,6 +87,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
     it('should show alert if Last name field is empty',
         function(done) {
             usersLibrary.clickCreateNewUser();
+            usersForm.waitSpinnerUntilStale();
             usersForm.clickCloseAccount();
             usersForm.completeUserFields(user);
             usersForm.waitUntilSaveUserButtonEnabled();

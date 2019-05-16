@@ -89,7 +89,8 @@ describe('<SMOKE-PROD> {{MAVERICK}}/third-party-data-library {UI} @MANAGER ' +
 
     it('should show expected element after filtering table', function(done) {
         thirdPartyDataLibrary.setInputSearch(dataToSearch);
-        expect(thirdPartyDataLibrary.getRemoveFilterOption()).to.exist;
+        expect(thirdPartyDataLibrary.getRemoveFilterOption(dataToSearch))
+            .to.exist;
         expect(thirdPartyDataLibrary.getFirstSegmentOnTable()).to.exist;
         thirdPartyDataLibrary.getFirstSegmentOnTable().getText().
             then(function(getText) {
@@ -99,8 +100,8 @@ describe('<SMOKE-PROD> {{MAVERICK}}/third-party-data-library {UI} @MANAGER ' +
     });
 
     it('should show table after removing filter added', function(done) {
-        thirdPartyDataLibrary.removeFilterOption();
-        thirdPartyDataLibrary.noRemoveFilterOptionDisplayed()
+        thirdPartyDataLibrary.removeFilterOption(dataToSearch);
+        thirdPartyDataLibrary.noRemoveFilterOptionDisplayed(dataToSearch)
             .then(function(arr) {
                 expect(arr).to.be.empty;
             });

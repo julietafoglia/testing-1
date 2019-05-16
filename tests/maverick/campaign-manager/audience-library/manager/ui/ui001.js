@@ -58,7 +58,7 @@ describe('<> {{MAVERICK}} /audience-library {UI} @MANAGER >>> ' +
     it('should navigate to audiences page', function(done) {
         sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
-        audiencesLibrary.waitUntilFilterNotVisible();
+        // audiencesLibrary.waitUntilFilterNotVisible();
         driver.sleep(driverTimeOut).then(() => done());
     });
 

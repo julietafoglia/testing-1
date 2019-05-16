@@ -5,6 +5,7 @@ const rootPath = process.env.ROOT_PATH;
 const BasePage = require(rootPath + '/pages/maverick');
 const driverTimeOut = 0;
 const oneSecTO = 1000;
+const twoSecTO = 2000;
 
 // selenium runtime variables
 const webdriver = require('selenium-webdriver');
@@ -14,7 +15,7 @@ const key = webdriver.Key;
 // inputs
 const BUTTON_NEW_AUDIENCE = By.
     css('a[class="button create"]');
-const INPUT_SEARCH = By.css('div.column--3 input[type="text"]');
+const INPUT_SEARCH = By.css('async-table input[type="text"]');
 const INPUT_AUDIENCE_NAME = By.xpath('//content-editable/div/input');
 const TITLE_AUDIENCES = By.xpath('//h1[text() = "Audiences"]');
 const TITLE_AUDIENCES_VIEW = By.css(
@@ -290,27 +291,9 @@ AudienceLibraryPage.prototype.clickDetailsAudience = function() {
     return this.click(LINK_VIEW_DETAILS);
 };
 
-// AudienceLibraryPage.prototype.clickAudienceView = function() {
-//     this.waitUntilVisible(TITLE_AUDIENCE_VIEW);
-//     this.click(TITLE_AUDIENCE_VIEW);
-//     return this;
-// };
-
-// AudienceLibraryPage.prototype.clickFileView = function() {
-//     this.waitUntilVisible(TITLE_FILE_VIEW);
-//     this.click(TITLE_FILE_VIEW);
-//     return this;
-// };
-
-
-// AudienceLibraryPage.prototype.clickMatchView = function() {
-//     this.waitUntilVisible(TITLE_MATCH_VIEW);
-//     this.click(TITLE_MATCH_VIEW);
-//     return this;
-// };
-
 AudienceLibraryPage.prototype.clickNewAudience = function() {
     this.waitAndClick(BUTTON_NEW_AUDIENCE);
+    this.driver.sleep(twoSecTO);
     return this;
 };
 
@@ -319,34 +302,12 @@ AudienceLibraryPage.prototype.clickCreateLiveAudience = function() {
     return this.driver.sleep(driverTimeOut);
 };
 
-// AudienceLibraryPage.prototype.clickAddToAudience = function(value) {
-//     let actions = this.driver.actions();
-//     actions
-//         .mouseMove(this.getAudienceName(value))
-//         .click(this.getAudienceName(value))
-//         .perform();
-//     this.click(LINK_ADD);
-//     return this.driver.sleep(driverTimeOut);
-// };
-
 AudienceLibraryPage.prototype.clickRemoveFromAudience = function() {
     this.driver.sleep(driverTimeOut);
     this.waitUntilVisible(LINK_REMOVE);
     this.click(LINK_REMOVE);
     return this.driver.sleep(driverTimeOut);
 };
-
-// AudienceLibraryPage.prototype.clickShareAudience = function() {
-//     this.waitUntilVisible(LINK_SHARE);
-//     this.click(LINK_SHARE);
-//     return this;
-// };
-
-// AudienceLibraryPage.prototype.clickDeleteAudience = function() {
-//     this.driver.sleep(driverTimeOut);
-//     this.waitUntilVisible(LINK_DELETE);
-//     return this.click(LINK_DELETE);
-// };
 
 AudienceLibraryPage.prototype.uploadFile = function(value, file) {
     this.waitUntilVisible(INPUT_SEARCH);
@@ -377,13 +338,6 @@ AudienceLibraryPage.prototype.clickLinkAdd = function() {
     this.waitUntilVisible(LINK_EDIT);
     return this.click(LINK_EDIT);
 };
-
-
-// AudienceLibraryPage.prototype.clickLinkRemove = function() {
-//     this.waitUntilVisible(LINK_REMOVE);
-//     this.click(LINK_REMOVE);
-//     return this.driver.sleep(driverTimeOut);
-// };
 
 AudienceLibraryPage.prototype.clickCreated = function() {
     this.driver.sleep(driverTimeOut);
@@ -480,49 +434,5 @@ AudienceLibraryPage.prototype.searchForAudience = function(value) {
     this.sendKeys(INPUT_SEARCH, value);
     return this.waitAndClick(FIRST_ROW);
 };
-
-/* AudienceLibraryPage.prototype.getAdId = function(id) {
-    return this.findElement(
-        By.xpath('//span[@class="copy--supporting" ' +
-            'and contains(.,"' + id + '")]'));
-};
-
-AudienceLibraryPage.prototype.getAdvName = function(name) {
-    return this.findElement(
-        By.xpath('//a[@class="overflow" and text()="' + name + '"]'));
-};
-
-AudienceLibraryPage.prototype.getAdvId = function(id) {
-    return this.findElement(
-        By.xpath('//div[@class="copy--supporting" and' +
-            ' contains(.,"' + id + '")]'));
-};
-
-AudienceLibraryPage.prototype.getAdSize = function(size) {
-    return this.findElement(
-        By.xpath('//div[@class="supporting" and text()="' + size + '"]'));
-};
-
-AudienceLibraryPage.prototype.getAdSourceUrl = function(source) {
-    return this.findElement(
-        By.xpath('//a[contains(.,"' + source + '")]'));
-};
-
-AudienceLibraryPage.prototype.getAdClickUrl = function(click) {
-    return this.findElement(
-        By.xpath('//a[text()="' + click + '"]'));
-};
-
-AudienceLibraryPage.prototype.getAdCreatedDate = function(size) {
-    return this.findElement(
-        By.xpath('//div[@class="cell cell--height cell--noflex' +
-            ' cell--date"]/span'));
-};
-
-AudienceLibraryPage.prototype.getAdCreatedHour = function(size) {
-    return this.findElement(
-        By.xpath('//div[@class="cell cell--height cell--noflex' +
-            ' cell--date"]/span[2]'));
-};*/
 
 module.exports = AudienceLibraryPage;

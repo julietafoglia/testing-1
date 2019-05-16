@@ -15,7 +15,8 @@ let twoSecTO = 2000;
 const BUTTON_UPLOAD = By.css('.button--create');
 const BUTTON_CANCEL = By.xpath('//a[text() = "Cancel"]');
 const BUTTON_ACTION = By.css('select-dropdown[name="action"] div button');
-const TEXT_BUTTON_ACTION = By.css('select-dropdown[name="action"] div button span');
+const TEXT_BUTTON_ACTION = By.css('select-dropdown[name="action"]' +
+    ' div button span');
 const BUTTON_DATA_TYPE = By.css('select-dropdown[name="hashType"] div button');
 const BUTTON_DATA_TYPE_RATE = By.xpath('//section/div[2]/div[2]' +
     '/select-dropdown/div/button');
@@ -23,7 +24,7 @@ const BUTTON_UPDATE = By.xpath('//button[text() = "Upload Audience"]');
 
 const INPUT_ADVERTISER = By.css('select-item > div > input[type="text"]');
 const INPUT_AUDIENCE_NAME = By.css('div._form--control > input');
-const INPUT_CHOOSE_AUDIENCE = By.css('select-item[name="audience"] div input')
+const INPUT_CHOOSE_AUDIENCE = By.css('select-item[name="audience"] div input');
 const INPUT_FILE = By.css('file-input[name="file"] div input');
 const INPUT_MATCH_RATE = By.css('file-input[name="files"] div input');
 const INPUT_EMAIL = By.xpath('//input[@name="email"]');
@@ -32,7 +33,7 @@ const TEXT_CHECK_MERKLE = By.xpath('//span[text() = "This is a Merkle ' +
     'PAM audience file."]');
 const TEXT_CHECK_SHARE = By.xpath('//span[text() = "Share this audience ' +
     'across the associated media group or agency."]');
-const TEXT_CHECK_SPECIFIC__SHARE = By.xpath('//span[text() = "Share this ' +
+const TEXT_CHECK_SPECIFIC_SHARE = By.xpath('//span[text() = "Share this ' +
     'audience with specific advertisers."]');
 const TEXT_CHECK_EMAIL = By.xpath('//span[text() = "Email me when' +
     ' it\'s done."]');
@@ -44,15 +45,14 @@ const CHECK_SPECIFIC_SHR = By.xpath('//input[@name="sharingControl"]/' +
     'parent::label/span[contains(text(), ' +
     '"Share this audience with specific advertisers")]');
 const CHECK_EMAIL = By.xpath('//input[@name="emailMe"]/parent::label');
-const INPUT_MERKLE = By.xpath('//upload-audience-form/div/form/section-card[3]' +   
-    '/div/div[2]/div[1]/div/div[3]/div[2]/label[1]/input');
-
-const INPUT_DO_NOT_SHARE = By.xpath('//span[text() = "Do not share this audience."]');
+const INPUT_MERKLE = By.xpath('//upload-audience-form/div/form/' +
+    'section-card[3]/div/div[2]/div[1]/div/div[3]/div[2]/label[1]/input');
+const INPUT_DO_NOT_SHARE = By.xpath('//span[text() = "Do not share this' +
+    ' audience."]');
 const INPUT_SHARE_SPECIFIC = By.xpath('//span[text() = "Share this audience' +
     ' with specific advertisers."]');
 const INPUT_SHARE_ACROSS = By.xpath('//span[text() = "Share this audience' +
     ' across the associated media group or agency."]');
-    
 const UPLOAD_CONTAINER = By.css('file-input[name="file"] div');
 const UPLOAD_MATCH_RATE = By.css('file-input[name="files"] div');
 
@@ -333,7 +333,7 @@ AudienceFormPage.prototype.setInputEmail = function(value) {
 
 AudienceFormPage.prototype.clickUpload = function() {
     this.click(BUTTON_UPLOAD);
-    return this.driver.sleep(driverTimeOut);
+    return this.driver.sleep(twoSecTO);
 };
 
 AudienceFormPage.prototype.clickCancel = function() {

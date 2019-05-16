@@ -89,7 +89,8 @@ describe('<SMOKE-PROD> {{MAVERICK}} /buyer-seat-library {UI} @MANAGER >>> ' +
 
     it('should show expected element after filtering table', function(done) {
         buyerSeatLibraryPage.setInputSearch(dataToSearch);
-        expect(buyerSeatLibraryPage.getRemoveFilterOption()).to.exist;
+        expect(buyerSeatLibraryPage.getRemoveFilterOption(dataToSearch))
+            .to.exist;
         expect(buyerSeatLibraryPage.getFirstBuyerNameOnTable()).to.exist;
         buyerSeatLibraryPage.getFirstBuyerNameOnTable().getText()
             .then(function(text) {
@@ -100,7 +101,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /buyer-seat-library {UI} @MANAGER >>> ' +
 
     it('should not show filtered element in first row after removing' +
      ' filter', function(done) {
-        buyerSeatLibraryPage.removeFilterOption();
+        buyerSeatLibraryPage.removeFilterOption(dataToSearch);
         buyerSeatLibraryPage.waitUntilSpinnerDissapear();
         buyerSeatLibraryPage.getFirstBuyerNameOnTable().getText()
             .then(function(text) {

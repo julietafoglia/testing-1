@@ -37,8 +37,8 @@ const targetUser = targetEnvironmentUsers.admin;
 
 // shared test variable(s)
 let driver;
-let adSlotName = targetAdSlot.name;
-let adSlotId = 'ID: ' + targetAdSlot.refId;
+let adSlotName = 'Product Listing OCC';
+let adSlotId = 'ID: 273813';
 let publisherTitle = 'PUBLISHER';
 let newsletterTitle = 'NEWSLETTER';
 let adslotTitle = 'AD SLOT';

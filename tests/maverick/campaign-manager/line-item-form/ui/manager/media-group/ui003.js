@@ -43,7 +43,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE> {{MAVERICK}} /line-item {UI} @MANAGER >>> ' +
+describe('<SMOKE-PROD> {{MAVERICK}} /line-item {UI} @MANAGER >>> ' +
     '(+) verify ui elements - house branding - create >>>', function() {
 
     // disable mocha time outs
@@ -121,6 +121,9 @@ describe('<SMOKE> {{MAVERICK}} /line-item {UI} @MANAGER >>> ' +
             expect(element).to.exist;
         });
         lineItemPage.getDropdownLiveAudienceExclude().then(function(element) {
+            expect(element).to.exist;
+        });
+        lineItemPage.getInputPlacementId().then(function(element) {
             expect(element).to.exist;
         });
         lineItemPage.getLinkLiveRampTargeting().then(function(element) {
@@ -248,7 +251,6 @@ describe('<SMOKE> {{MAVERICK}} /line-item {UI} @MANAGER >>> ' +
         lineItemPage.selectAdvancedTargeting('Device Maker');
         lineItemPage.selectAdvancedTargeting('ISP');
         lineItemPage.selectAdvancedTargeting('OS');
-        lineItemPage.selectAdvancedTargeting('Placement Id');
         lineItemPage.selectAdvancedTargeting('List Id');
         lineItemPage.selectAdvancedTargeting('Key Value Pairs');
         lineItemPage.getInputBrowsers().then(function(element) {
@@ -273,9 +275,6 @@ describe('<SMOKE> {{MAVERICK}} /line-item {UI} @MANAGER >>> ' +
             expect(element).to.exist;
         });
         lineItemPage.getInputOs().then(function(element) {
-            expect(element).to.exist;
-        });
-        lineItemPage.getInputPlacementId().then(function(element) {
             expect(element).to.exist;
         });
         lineItemPage.getInputListId().then(function(element) {

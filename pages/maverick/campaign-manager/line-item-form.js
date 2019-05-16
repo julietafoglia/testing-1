@@ -294,7 +294,7 @@ const CHECK_DOMAINS = By
     .xpath('//span[text() = "Domains Whitelist/Blacklist"]');
 const CHECK_ISP = By.xpath('//span[text() = "ISP"]');
 const CHECK_OS = By.xpath('//span[text() = "OS"]');
-const CHECK_PLACEMENT_ID = By.xpath('//span[text()="Placement Id"]');
+const CHECK_PLACEMENT_ID = By.xpath('//label[text()="Placement Id"]');
 const CHECK_LIST_ID = By.xpath('//span[text()="List Id"]');
 const CHECK_WHITELIST = By.
     xpath('//span[text() = "Publisher Whitelist/Blacklist"]');

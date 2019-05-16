@@ -83,8 +83,8 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
     });
 
     it('should show table after removing filter added', function(done) {
-        usersLibrary.removeFilterOption();
-        usersLibrary.noRemoveFilterOptionDisplayed()
+        usersLibrary.removeFilterOption(userToSearch);
+        usersLibrary.noRemoveFilterOptionDisplayed(userToSearch)
             .then(function(arr) {
                 expect(arr).to.be.empty;
             });

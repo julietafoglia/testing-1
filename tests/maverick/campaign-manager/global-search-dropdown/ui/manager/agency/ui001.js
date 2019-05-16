@@ -38,7 +38,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE> {{MAVERICK}} /campaign-manager/' +
+describe('<SMOKE-PROD> {{MAVERICK}} /campaign-manager/' +
     'global-search-dropdown {ui} @MANAGER >>> ' +
     '(+) verify ui elements >>>', function() {
 
@@ -71,7 +71,7 @@ describe('<SMOKE> {{MAVERICK}} /campaign-manager/' +
 
     it('should show results in dropdown after ' +
         'advertiser search', function(done) {
-        globalSearchInput.setInputSearchSecondDdn(targetAdv.refId);
+        globalSearchInput.setInputSearchDdn(targetAdv.refId);
         expect(globalSearchInput.getLinkText(targetAdv.name)).to.exist;
         driver.sleep(driverTimeOut).then(() => done());
     });

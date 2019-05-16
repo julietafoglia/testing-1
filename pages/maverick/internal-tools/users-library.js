@@ -8,6 +8,7 @@ const BasePage = require(rootPath + '/pages/maverick');
 const webdriver = require('selenium-webdriver');
 const By = webdriver.By;
 const key = webdriver.Key;
+const twoSecTO = 2000;
 
 // Internal Tools Side bar elements
 const USERS_SIDEBAR = By.xpath('//span[text() = "Users"]');
@@ -20,7 +21,8 @@ const TITLE_USERS = By.xpath('//h1[text() = "Users"]');
 const CREATE_NEW_USER_BUTTON = By.
     xpath('//button[text() = "Create New User"]');
 const INPUT_SEARCH = By.css('input[placeholder="Search"]');
-const FILTER_OPTION_REMOVE = By.css('.button--small .icon.icon--exit');
+const FILTER_OPTION_REMOVE = (text) =>
+    By.xpath(`//span[contains(text(),"${text}")]`);
 const FIRST_CONTROL_BUTTON = By.xpath('//button[text() = "First"]');
 const PREVIOUS_CONTROL_BUTTON = By.xpath('//button[text() = "Previous"]');
 const NEXT_CONTROL_BUTTON = By.xpath('//button[text() = "Next"]');
@@ -71,8 +73,8 @@ UsersLibraryPage.prototype.getInputSearch = function(){
     return this.getElement(INPUT_SEARCH);
 };
 
-UsersLibraryPage.prototype.getRemoveFilterOption = function(){
-    return this.getElement(FILTER_OPTION_REMOVE);
+UsersLibraryPage.prototype.getRemoveFilterOption = function(text){
+    return this.getElement(FILTER_OPTION_REMOVE(text));
 };
 
 UsersLibraryPage.prototype.getFirstControlButton = function(){
@@ -167,8 +169,8 @@ UsersLibraryPage.prototype.getSpinnerCSS = function(){
     return this.getElement(LOADER);
 };
 
-UsersLibraryPage.prototype.noRemoveFilterOptionDisplayed = function() {
-    return this.elementNotLocated(FILTER_OPTION_REMOVE);
+UsersLibraryPage.prototype.noRemoveFilterOptionDisplayed = function(text) {
+    return this.elementNotLocated(FILTER_OPTION_REMOVE(text));
 };
 
 // Clicks
@@ -191,11 +193,12 @@ UsersLibraryPage.prototype.setInputSearch = function(value) {
     this.clear(INPUT_SEARCH);
     this.sendKeys(INPUT_SEARCH, value);
     this.sendKeys(INPUT_SEARCH, key.ENTER);
-    return this.driver.sleep(2000);
+    return this.driver.sleep(twoSecTO);
 };
 
-UsersLibraryPage.prototype.removeFilterOption = function(){
-    return this.waitAndClick(FILTER_OPTION_REMOVE);
+UsersLibraryPage.prototype.removeFilterOption = function(text){
+    this.waitAndClick(FILTER_OPTION_REMOVE(text));
+    return this.driver.sleep(twoSecTO);
 };
 
 UsersLibraryPage.prototype.clickFirstPageTableControl = function(){

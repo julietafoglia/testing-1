@@ -64,7 +64,7 @@ const SCRUB_LISTS_CHECKBOX = By.xpath('//span[text()= ' +
 const PUBLISHER_USERS_CHECKBOX = By.xpath('//span[text()= ' +
     '"Publisher Users"]');
 
-const ADD_ACCOUNT_LINK = By.css('.link .icon--add-create');
+const ADD_ACCOUNT_LINK = By.css('button.link i');
 const CLOSE_ACCOUNT = By.id('grant-close');
 
 const IU_LIVEINTENT_ADOPS_CHECKBOX = By.xpath('//span[text()= ' +
@@ -556,6 +556,8 @@ UserForm.prototype.clickAddAccountLink = function() {
 };
 
 UserForm.prototype.clickCloseAccount = function() {
+    this.waitOverlayUntilStale();
+    this.waitUntilSpinnerContainerNotVisible();
     return this.waitAndClick(CLOSE_ACCOUNT);
 };
 

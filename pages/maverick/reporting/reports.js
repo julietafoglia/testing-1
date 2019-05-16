@@ -35,7 +35,7 @@ const LOADING_INDICATOR = By.xpath('//overlay-loading-indicator');
 
 // Report create elements
 const CREATE_HEADER_TITLE = By.xpath('//h4[text() = "Create Report"]');
-const EXIT_BUTTON = By.xpath('//div[2]/button/span');
+const EXIT_BUTTON = By.css('button i');
 const REPORT_TYPE_TEXT = By.xpath('//label[text() = "Report Type"]');
 const REPORT_TYPE_DROPDOWN = By.css('select-dropdown[name="presets"]' +
     ' div button span');
@@ -46,7 +46,7 @@ const ADD_A_SCHEDULE_LINK = By
     .xpath('//section//a[text() = "+ Add a Schedule"]');
 const DELIVERY_FREQUENCY_DROPDOWN =
     By.css('select-dropdown[name="scheduleFrequency"] div button span');
-const CLOSE_SCHEDULE_BUTTON = By.xpath('//section/div/div/div/button/span');
+const CLOSE_SCHEDULE_BUTTON = By.xpath('//section/div/div/div/button/i');
 const START_DELIVERY_DURATION
     = By.xpath('//section//div[2]//div[2]/div[1]/date-picker//input');
 const END_DELIVERY_DURATION
@@ -85,7 +85,7 @@ const CHOOSE_PUBLISHERS_HEADER =
     By.xpath('//h4[text() = "Choose Publishers"]');
 const EXIT_CHOOSE_PUBLISHERS_BUTTON =
     By.xpath('//publishers-filter/reports-entity-filter/' +
-    '/div[2]//div[1]/button/span');
+    '/div[2]//div[1]/button/i');
 const CANCEL_CHOOSE_PUBLISHERS_LINK =
     By.xpath('//publishers-filter/reports-entity-filter/' +
     '/div[2]/div/div/div[3]//a');
@@ -168,7 +168,7 @@ const ADD_A_FILTER = By.xpath('//a[contains(text(),"Add a Filter")]');
 const INEXACT_SPLITS_DROPDOWN = By.xpath('//multi-select[@name=' +
     '"reportInexactSplits"]/parent::div');
 const CLOSE_INEXACT_BTN = By.xpath('//multi-select[@name=' +
-    '"reportInexactSplits"]/parent::div/following-sibling::div/a/span');
+    '"reportInexactSplits"]/parent::div/following-sibling::div/a/i');
 const AGE_OPT = By.xpath('//span[text() = "Age"]');
 const GENDER_OPT = By.xpath('//span[text() = "Gender"]');
 const COUNTRY_OPT = By.xpath('//span[text() = "Country"]');

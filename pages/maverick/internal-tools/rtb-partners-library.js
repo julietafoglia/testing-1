@@ -12,7 +12,8 @@ const key = webdriver.Key;
 // elements page
 const TITLE_RTB_PARTNER = By.xpath('//h1[text() = "RTB Partner Manager"]');
 const INPUT_SEARCH = By.css('input[placeholder="Search"]');
-const FILTER_OPTION_REMOVE = By.css('.button--small span.icon.icon--exit');
+const FILTER_OPTION_REMOVE = (text) =>
+    By.xpath(`//span[contains(text(),"${text}")]`);
 const FIRST_CONTROL_BUTTON = By.xpath('//button[text() = "First"]');
 const PREVIOUS_CONTROL_BUTTON = By.xpath('//button[text() = "Previous"]');
 const NEXT_CONTROL_BUTTON = By.xpath('//button[text() = "Next"]');
@@ -90,9 +91,9 @@ RtbPartnersLibraryPage.prototype.getInputSearch = function(){
     return this.findElement(INPUT_SEARCH);
 };
 
-RtbPartnersLibraryPage.prototype.getRemoveFilterOption = function(){
-    this.waitUntilVisible(FILTER_OPTION_REMOVE);
-    return this.findElement(FILTER_OPTION_REMOVE);
+RtbPartnersLibraryPage.prototype.getRemoveFilterOption = function(text){
+    this.waitUntilVisible(FILTER_OPTION_REMOVE(text));
+    return this.findElement(FILTER_OPTION_REMOVE(text));
 };
 
 // navigations buttons
@@ -225,8 +226,8 @@ RtbPartnersLibraryPage.prototype.getRowsSelectNumber = function(){
     return this.findElement(ROWS_SELECTED_NUMBER);
 };
 
-RtbPartnersLibraryPage.prototype.noRemoveFilterOptionDisplayed = function() {
-    return this.elementNotLocated(FILTER_OPTION_REMOVE);
+RtbPartnersLibraryPage.prototype.noRemoveFilterOptionDisplayed = function(text){
+    return this.elementNotLocated(FILTER_OPTION_REMOVE(text));
 };
 
 RtbPartnersLibraryPage.prototype.getFirstRtbPartnerNameOnTable = function(){
@@ -278,8 +279,8 @@ RtbPartnersLibraryPage.prototype.setInputSearch = function(value) {
     return this.waitUntilDisabled(NEXT_CONTROL_BUTTON);
 };
 
-RtbPartnersLibraryPage.prototype.removeFilterOption = function(){
-    return this.waitAndClick(FILTER_OPTION_REMOVE);
+RtbPartnersLibraryPage.prototype.removeFilterOption = function(text){
+    return this.waitAndClick(FILTER_OPTION_REMOVE(text));
 };
 
 RtbPartnersLibraryPage.prototype.clickFirstPageTableControl = function(){

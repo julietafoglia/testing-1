@@ -31,7 +31,8 @@ const SIDEBAR_RESIZE = By.css('.local-navigation--controls');
 // Accounts page element
 const MORE_ADVERTISERS = By.css('button.button--primary.more-advertisers');
 // Conversion Trackers
-const NEW_TRACKER = By.css('button.button--create');
+const NEW_TRACKER = By
+    .css('a[href="/campaign-manager/conversion-trackers/new"]');
 // Reports page
 const NEW_REPORT = By.css('button.button--create');
 const REPORTS_DIV = By.css('div.reports');

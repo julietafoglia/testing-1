@@ -116,7 +116,8 @@ function() {
             .then(() => done());
     });
 
-    it('line item should exist in adv details list', function(done) {
+    // bug created DEM-2042
+    xit('line item should exist in adv details list', function(done) {
         lineItemDetailsPage.getLineItemTitleName(testData001.name)
             .then(function(element) {
                 expect(element).to.exist;

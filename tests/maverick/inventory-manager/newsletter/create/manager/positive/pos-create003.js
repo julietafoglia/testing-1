@@ -33,7 +33,7 @@ const targetEnvironmentUsers =
 const targetUser = targetEnvironmentUsers.admin;
 
 
-describe('{{MAVERICK}} - newsletter {create} @ADMIN >>> ' +
+describe('<SMOKE> {{MAVERICK}} - newsletter {create} @ADMIN >>> ' +
     '(+) bulk upload tool - single newsletter - ad-slot pair >>>', function() {
 
     // shared test variable(s)

@@ -100,6 +100,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 expect(arr).to.be.empty;
             });
         usersForm.clickClose();
+        usersForm.waitSpinnerUntilStale();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
@@ -131,6 +132,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 });
             expect(usersForm.getAddAcountLink()).to.exist;
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 
@@ -167,6 +169,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 });
             expect(usersForm.getAddAcountLink()).to.exist;
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 
@@ -210,6 +213,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 });
             expect(usersForm.getAddAcountLink()).to.exist;
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 
@@ -222,6 +226,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
             usersForm.waitUntilSaveUserButtonEnabled();
             expect(usersForm.getSaveUserButton()).to.exist;
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 
@@ -294,6 +299,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 expect(arr).to.be.empty;
             });
         usersForm.clickClose();
+        usersForm.waitSpinnerUntilStale();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
@@ -354,6 +360,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
         expect(usersForm.getLiveIntentStandardCheckbox()).to.exist;
         expect(usersForm.getLiveIntentAccountManagerCheckbox()).to.exist;
         usersForm.clickClose();
+        usersForm.waitSpinnerUntilStale();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
@@ -367,6 +374,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
             usersForm.waitUntilSaveUserButtonEnabled();
             expect(usersForm.getSaveUserButton()).to.exist;
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 
@@ -407,6 +415,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 });
             usersForm.clickCloseAccount();
             usersForm.clickClose();
+            usersForm.waitSpinnerUntilStale();
             driver.sleep(driverTimeOut).then(() => done());
         });
 

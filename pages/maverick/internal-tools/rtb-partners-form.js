@@ -49,25 +49,26 @@ const BID_TYPE_DROPDOWN_NATIVE_TEXT = By.xpath('//span[text() = "Native"]');
 const STATUS_DROPDOWN_NATIVE_CONST = 'Native';
 const PARENT_DSP_LABEL = By.css('div:nth-child(7) > div._form--label > label');
 const PARENT_DSP_INPUT = By.css('searchable-select-single input');
-const MATCH_URL_LABEL = By.css('div:nth-child(9) > div > ' +
-    'div._form--label > label');
-const MATCH_URL_INPUT = By.css('div:nth-child(9) > div > ' +
-    'div._form--control > textarea');
+const MATCH_URL_LABEL = By.xpath('//label[contains(text(),"Match URL")]');
+const MATCH_URL_INPUT = By.css('textarea[name="matchUrl"]');
 const MD5_CHECKBOX_INPUT = By.css('div:nth-child(11) label');
 const MD5_CHECKBOX_INPUT_CHECK = By.css('input[name="md5uuid"]');
 const MD5_CHECKBOX_TEXT = By.xpath('//span[text() = "MD5 as UUID"]');
-const MATCHED_USERS_CHECKBOX_INPUT = By.css('div:nth-child(12) label');
+const MATCHED_USERS_CHECKBOX_INPUT = By.xpath(
+    '//input[contains(@name,"matchedUsersOnly")]/..');
 const MATCHED_USERS_CHECKBOX_INPUT_CHECK = By.css('input' +
     '[name="matchedUsersOnly"]');
 const MATCHED_USERS_CHECKBOX_TEXT = By.xpath('//span[text() = ' +
     '"Matched Users Only"]');
-const CREATIVE_SIZE_LABEL = By.css('div:nth-child(13) label');
-const CREATIVE_SIZE_INPUT = By.css('div:nth-child(13) input');
-const CREATIVE_SIZE_SELECTED_OPTION = By.css('div:nth-child(13) button');
-const CREATIVE_SIZE_SELECTED_OPTION_CLOSE = By.css('div:nth-child(13) ' +
-    '.icon.icon--sm.icon--exit');
+const CREATIVE_SIZE_LABEL = By.xpath(
+    '//tags-input[contains(@name,"iabSizes")]/../../div/label');
+const CREATIVE_SIZE_INPUT = By.xpath(
+    '//tags-input[contains(@name,"iabSizes")]/search-input/div/input');
+const CREATIVE_SIZE_SELECTED_OPTION = By.css('div:nth-child(11) button');
+const CREATIVE_SIZE_SELECTED_OPTION_CLOSE = By.css('div:nth-child(11) i');
 const PROTOCOL_LABEL = By.css('div:nth-child(15) label');
-const PROTOCOL_BUTTON_DROPDOWN = By.css('div:nth-child(15) button');
+const PROTOCOL_BUTTON_DROPDOWN = By.css(
+    'select-dropdown[name="protocol"] div button span');
 const PROTOCOL_DROPDOWN_OPEN_RTB_DISPLAY = By.xpath('//span[text() = ' +
     '"OpenRTB Display"]');
 const PROTOCOL_DROPDOWN_CRITEO = By.xpath('//span[text() = "Criteo"]');
@@ -82,8 +83,8 @@ const PROTOCOL_DROPDOWN_CRITEO_CONST = 'Criteo';
 const PROTOCOL_DROPDOWN_RTB_NATIVE_ENC_CONST = 'OpenRTB Native Enc v1.1';
 const PROTOCOL_DROPDOWN_RTB_NATIVE_ENC_CONST2 = 'OpenRTB Native Enc v1.2';
 const PROTOCOL_DROPDOWN_RTB_NATIVE_CONST = 'OpenRTB Native v1.1';
-const OPEN_RTB_HEADER_LABEL = By.css('div:nth-child(16) > div > ' +
-    'div._form--label > label');
+const OPEN_RTB_HEADER_LABEL = By.xpath(
+    '//label[contains(text(),"OpenRTB Header")]');
 const OPEN_RTB_HEADER_BUTTON_DROPDOWN = By.css('div:nth-child(16) ' +
     'select-dropdown > div > button');
 const EXTRA_OFFER_LABEL = By.css('div:nth-child(17) label');
@@ -885,15 +886,16 @@ RtbPartnersFormPage.prototype.getParentDspInput = function() {
 };
 
 RtbPartnersFormPage.prototype.getParentDspOptions = function() {
-    this.waitUntilVisible(PARENT_DSP_FIRST_ROW);
-    return this.findElement(PARENT_DSP_FIRST_ROW);
+    return this.getElement(PARENT_DSP_FIRST_ROW);
 };
 
 RtbPartnersFormPage.prototype.setInputParentDspSearch = function(value) {
     this.waitUntilVisible(PARENT_DSP_INPUT);
     this.clear(PARENT_DSP_INPUT);
+    this.driver.sleep(500);
     this.sendKeys(PARENT_DSP_INPUT, value);
-    return this.getParentDspOptions().click();
+    this.getParentDspInput().click();
+    return this.findElement(PARENT_DSP_FIRST_ROW).click();
 };
 
 RtbPartnersFormPage.prototype.getParentDspSelected = function() {

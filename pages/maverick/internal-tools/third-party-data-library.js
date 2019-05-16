@@ -13,7 +13,8 @@ const key = webdriver.Key;
 
 const TITLE_THIRD_PARTY_DATA = By.xpath('//h1[text() = "3rd Party Data"]');
 const INPUT_SEARCH = By.css('input[placeholder="Search"]');
-const FILTER_OPTION_REMOVE = By.css('.button--small .icon.icon--exit');
+const FILTER_OPTION_REMOVE = (text) =>
+    By.xpath(`//span[contains(text(),"${text}")]`);
 const FIRST_CONTROL_BUTTON = By.xpath('//button[text() = "First"]');
 const PREVIOUS_CONTROL_BUTTON = By.xpath('//button[text() = "Previous"]');
 const NEXT_CONTROL_BUTTON = By.xpath('//button[text() = "Next"]');
@@ -76,9 +77,9 @@ ThirdPartyDataLibraryPage.prototype.getInputSearch = function(){
     return this.findElement(INPUT_SEARCH);
 };
 
-ThirdPartyDataLibraryPage.prototype.getRemoveFilterOption = function(){
-    this.waitUntilVisible(FILTER_OPTION_REMOVE);
-    return this.findElement(FILTER_OPTION_REMOVE);
+ThirdPartyDataLibraryPage.prototype.getRemoveFilterOption = function(text){
+    this.waitUntilVisible(FILTER_OPTION_REMOVE(text));
+    return this.findElement(FILTER_OPTION_REMOVE(text));
 };
 
 ThirdPartyDataLibraryPage.prototype.getFirstControlButton = function(){
@@ -194,8 +195,9 @@ ThirdPartyDataLibraryPage.prototype.getColumnProvider = function(){
 };
 
 
-ThirdPartyDataLibraryPage.prototype.noRemoveFilterOptionDisplayed = function() {
-    return this.elementNotLocated(FILTER_OPTION_REMOVE);
+ThirdPartyDataLibraryPage.prototype.noRemoveFilterOptionDisplayed =
+function(text){
+    return this.elementNotLocated(FILTER_OPTION_REMOVE(text));
 };
 
 ThirdPartyDataLibraryPage.prototype.getFirstSegmentOnTable = function(){
@@ -214,8 +216,8 @@ ThirdPartyDataLibraryPage.prototype.setInputSearch = function(value) {
     return this.driver.sleep(2000);
 };
 
-ThirdPartyDataLibraryPage.prototype.removeFilterOption = function(){
-    return this.waitAndClick(FILTER_OPTION_REMOVE);
+ThirdPartyDataLibraryPage.prototype.removeFilterOption = function(text){
+    return this.waitAndClick(FILTER_OPTION_REMOVE(text));
 };
 
 ThirdPartyDataLibraryPage.prototype.clickFirstPageTableControl = function(){

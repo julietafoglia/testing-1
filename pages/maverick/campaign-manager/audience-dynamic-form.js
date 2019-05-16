@@ -3,13 +3,10 @@
 // common runtime variables
 const rootPath = process.env.ROOT_PATH;
 const BasePage = require(rootPath + '/pages/maverick');
-const driverTimeOut = 5000;
 
 // selenium runtime variables
 const webdriver = require('selenium-webdriver');
 const By = webdriver.By;
-const key = webdriver.Key;
-let twoSecTO = 2000;
 
 const TEXT_TITLE = By.xpath('//h2[text() = "Create Dynamic Website Audience"]');
 const BUTTON_AUDIENCE_MEMBERS = By.css('select-dropdown[name="visitorType"]' +
@@ -25,12 +22,12 @@ const INPUT_MEMBER_LIFETIME = By.css('input[name="ttlInDays"]');
 const TEXT_MEMBER_LIFETIME = By.xpath('//span[text() = "Enter the number' +
     ' of days you want people to stay in your audience after meeting' +
     ' the URL criteria specified. People will be removed from your' +
-    ' audience after this time unless they meet the criteria again."]')
+    ' audience after this time unless they meet the criteria again."]');
 const BUTTON_OR = By.xpath('//button[text() = "OR"]');
 const BUTTON_AND = By.xpath('//button[text() = "AND"]');
 const BUTTON_EVENT = By.css('multi-select[name="eventTypes"] div button');
 const TEXT_EVENT = By.xpath('//div[text() = "Select the LiveConnect' +
-    ' event(s) that you would like to build your audience from."]')
+    ' event(s) that you would like to build your audience from."]');
 const CHECK_CUSTOM_NAME = By.css('input[name="customizeName"]');
 
 function AudienceDynamicFormPage(webdriver) {

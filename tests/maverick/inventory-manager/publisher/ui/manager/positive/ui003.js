@@ -40,7 +40,7 @@ let lastUpdTitle = 'LAST UPDATED';
 // page objects
 let dashboardPage, loginPage, mediaGroupDetailsPage;
 
-describe('<INVE> {{MAVERICK}} inventory manager - Media group' +
+describe('<SMOKE-PROD> {{MAVERICK}} inventory manager - Media group' +
     ' inventory library >>> (+) basic ui validation >>>', function() {
 
     // disable mocha time outs
@@ -109,7 +109,6 @@ describe('<INVE> {{MAVERICK}} inventory manager - Media group' +
     it('should show expected element after filtering table', function(done) {
         dashboardPage.setSearchField(mediaGroupName);
         dashboardPage.waitUntilFilterNotVisible();
-        driver.sleep(driverTimeOut);
         expect(dashboardPage.getFirstTableName()).to.exist;
         dashboardPage.getFirstTableName().getText().
             then(function(getText) {
@@ -351,7 +350,6 @@ describe('<INVE> {{MAVERICK}} inventory manager - Media group' +
     it('should access Media Group detail page', function(done) {
         dashboardPage.setSearchField(mediaGroupName);
         dashboardPage.waitUntilFilterNotVisible();
-        driver.sleep(driverTimeOut);
         expect(dashboardPage.getFirstTableName()).to.exist;
         expect(dashboardPage.getFirstTableRow()).to.exist;
         dashboardPage.openFirstEntity(mediaGroupName);

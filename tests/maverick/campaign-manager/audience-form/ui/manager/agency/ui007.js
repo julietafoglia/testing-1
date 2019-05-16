@@ -78,7 +78,8 @@ describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    it('Expansion det audience modal should have all the elements', function(done) {
+    it('Expansion det audience modal should have' +
+        ' all the elements', function(done) {
         expect(audPage.getInputAdvertiser()).to.exist;
         audPage.setInputAdvertiser(targetAdvName);
 
@@ -90,10 +91,10 @@ describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
         expect(audPage.getSpan('Probabilistic')).to.exist;
         audPage.getInputDet().getAttribute('outerHTML').
             then(function(outerHTML) {
-                expect(outerHTML).to.contain('ng-untouched ng-pristine ng-valid');
+                expect(outerHTML).to.contain('ng-untouched' +
+                    ' ng-pristine ng-valid');
             });
 
-        
         driver.sleep(driverTimeOut).then(() => done());
     });
 

@@ -7,7 +7,7 @@ const expect = chai.expect;
 // common runtime variables
 const rootPath = process.env.ROOT_PATH;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
-const driverTimeOut = 5000;
+const driverTimeOut = 0;
 
 //  Page object(s)
 let LoginPage = require(rootPath + '/pages/maverick/platform/login');
@@ -54,7 +54,7 @@ let publisherFixture = Object.assign(
 publisherFixture['managerName'] = 'QA-All user';
 publisherFixture['executiveName'] = 'QA-All user';
 
-describe('<INVE> {{MAVERICK}} inventory manager - inventory library' +
+describe('<SMOKE-PROD> {{MAVERICK}} inventory manager - inventory library' +
     ' Publisher Create Detail Page >>> (+) basic ui validation >>>',
 function() {
 
@@ -171,7 +171,6 @@ function() {
     it('should access Publisher detail page', function(done) {
         dashboardPage.setSearchField(publisherName);
         dashboardPage.waitUntilFilterNotVisible();
-        driver.sleep(driverTimeOut);
         expect(dashboardPage.getFirstTableName()).to.exist;
         expect(dashboardPage.getFirstTableRow()).to.exist;
         dashboardPage.openFirstEntity(publisherName);

@@ -1,22 +1,24 @@
 'use strict';
 
 // vendor dependencies
+const chai = require('chai');
+const expect = chai.expect;
 const moment = require('moment');
 
 // common runtime variables
 const rootPath = process.env.ROOT_PATH;
-const usersTargetEnvironment = require(rootPath +
-    '/bootstrap/entities-dsp.json');
-const targetUser = usersTargetEnvironment.agency002
-    .children.advertiser001
-    .children.advertiserUser001;
-const driverTimeOut = 5000;
-const shortTimeStamp = '@' + moment().format('YYYY-MM-DDTHH:mm');
+const usersTargetEnvironment =
+    require(rootPath + '/config/users/' + process.env.NODE_ENV);
+const targetUser = usersTargetEnvironment.admin;
+const timeStamp =
+    '@' + moment().format('YYYY-MM-DDTHH:mm');
+const driverTimeOut = 0;
 
 // bootstrap variables
-const entitiesFile = require(rootPath + '/bootstrap/entities-dsp.json');
+const entitiesFile =
+    require(rootPath + '/bootstrap/entities-dsp.json');
 const entitiesObj = entitiesFile;
-const targetAdv = entitiesObj.agency002.children.advertiser001;
+const targetAdv = entitiesObj.agency001.children.advertiser001;
 
 let driver; // initialized during test runtime
 
@@ -26,10 +28,13 @@ let LoginPage = require(rootPath + '/pages/maverick/platform/login');
 let SideBar = require(rootPath + '/pages/maverick/platform/side-bar');
 let AudLibrary = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-library');
+let AudCards = require(rootPath + '/pages/maverick/campaign-manager/' +
+    'audience-cards');
 let AudPage = require(rootPath + '/pages/maverick/campaign-manager/' +
     'audience-form');
 let audLibrary;
 let audPage;
+let audCards;
 let sideBar;
 let loginPage;
 
@@ -40,15 +45,13 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 // fixtures(s)
-const testFixture001 = rootPath + '/fixtures/common/audience/create006.txt';
-const testFixture002 =
-    require(rootPath + '/fixtures/common/audience/create001');
-let testData001 = Object.assign({}, testFixture002);
-testData001.name = testData001.name + shortTimeStamp + ' (SHA2)';
+const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
+const testFixture = require(rootPath + '/fixtures/common/audience/create001');
+let testData002 = Object.assign({}, testFixture);
+const audienceName = testData002.name + timeStamp;
 
-
-describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) upload audience - SHA2 file >>>', function() {
+describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+    '(+) create live audience >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -57,6 +60,7 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY-ADVERTISER >>> ' +
         driver = driverBuilder();
         audPage = new AudPage(driver);
         audLibrary = new AudLibrary(driver);
+        audCards = new AudCards(driver);
         sideBar = new SideBar(driver);
         loginPage = new LoginPage(driver);
         driver.manage().deleteAllCookies().then(() => {
@@ -71,25 +75,24 @@ describe('{{MAVERICK}} /audience-form {CREATE} @SS-AGENCY-ADVERTISER >>> ' +
             .then(() => done());
     });
 
-    it('it should navigate to audiences page', function(done) {
+    it('it should navigate to live audience page', function(done) {
         sideBar.clickAudiencesLink();
+        audLibrary.clickNewAudience();
+        audCards.clickCreateLiveAudience();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    it('should create audience', function(done) {
-        audLibrary.clickNewAudience();
+    it('it should fill all required fields', function(done) {
         audPage.setInputAdvertiser(targetAdv.name);
-        audPage.setInputAudienceName(testData001.name);
-        audPage.setInputFile(testFixture001);
-        audPage.clickDataType();
-        audPage.clickSpan('SHA2');
+        audPage.setInputAudienceName(audienceName);
+        audPage.setInputFile(testData001);
         audPage.clickUpload();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    it('audience should be displayed in file view', function(done) {
-        audLibrary.clickCreated();
-        audLibrary.getAudienceName(testData001.name);
+    it('audience should be created', function(done) {
+        audLibrary.setInputSearch(audienceName);
+        expect(audLibrary.getLinkText(audienceName)).to.exist;
         driver.sleep(driverTimeOut).then(() => done());
     });
 

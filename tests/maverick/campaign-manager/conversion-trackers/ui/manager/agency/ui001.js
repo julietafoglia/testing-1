@@ -48,7 +48,7 @@ function assertDisplayedOptions(array) {
         });
 }
 
-describe('<SMOKE-PROD> {{MAVERICK}} /conversion-trackers {ui} @ADMIN >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /conversion-trackers {ui} @ADMIN >>> ' +
     '(+) page display check >>>', function() {
 
     // disable mocha time outs

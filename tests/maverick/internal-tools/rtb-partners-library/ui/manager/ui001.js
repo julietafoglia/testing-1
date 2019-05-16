@@ -133,13 +133,13 @@ describe('<SMOKE-PROD> {{MAVERICK}} /rtb-partners-library {UI} @MANAGER >>> ' +
                     .then(function(text) {
                         expect(text).to.equal(searchedName);
                     });
+                rtbPartnerLibraryPage.removeFilterOption(searchedName);
             });
         driver.sleep(driverTimeOut).then(() => done());
     });
 
     it('should not show filtered element in first row after removing' +
      ' filter', function(done) {
-        rtbPartnerLibraryPage.removeFilterOption();
         rtbPartnerLibraryPage.waitUntilSpinnerDissapear();
         rtbPartnerLibraryPage.getFirstRtbPartnerNameOnTable().getText()
             .then(function(text) {

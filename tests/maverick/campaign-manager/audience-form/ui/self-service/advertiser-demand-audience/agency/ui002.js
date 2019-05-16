@@ -11,12 +11,6 @@ const usersTargetEnvironment = require(rootPath +
 const targetUser = usersTargetEnvironment.agency002.children.agencyUser001;
 const driverTimeOut = 0;
 
-// bootstrap variables
-const entitiesFile =
-    require(rootPath + '/bootstrap/entities-dsp.json');
-const entitiesObj = entitiesFile;
-const targetAdv = entitiesObj.agency001.children.advertiser001;
-
 let driver; // initialized during test runtime
 
 // selenium page object(s)
@@ -34,7 +28,6 @@ let audPage;
 let audCards;
 let sideBar;
 let loginPage;
-let targetAdvName = 'iniTestAdv (Linked_Ads 2)';
 
 // maverick runtime variables
 const targetEnvironment =
@@ -87,7 +80,7 @@ describe('{{MAVERICK}} /audience-form {UI} @SS-AGENCY >>> ' +
         audPage.clickDataType();
         expect(audPage.getSpan('MD5')).to.exist;
         expect(audPage.clickDataType()).to.exist;
-        
+
         expect(audPage.getInputEmail()).to.exist;
         expect(audPage.setInputEmail('invalid')).to.exist;
         audPage.clickInputEmail();

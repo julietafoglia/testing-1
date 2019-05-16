@@ -36,8 +36,8 @@ const targetNewsletter = targetPublisher.newsletter001;
 
 // shared test variable(s)
 let driver;
-let newsletterName = targetNewsletter.name;
-let newsletterId = 'ID: ' + targetNewsletter.refId;
+let newsletterName = 'initest NATIVE ACTIVATION';
+let newsletterId = 'ID: 19866';
 let publisherTitle = 'PUBLISHER';
 let newsletterTitle = 'NEWSLETTER';
 let adslotsTitle = '# OF AD SLOTS';

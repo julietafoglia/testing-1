@@ -40,7 +40,7 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 describe('<SMOKE-PROD> {{MAVERICK}} /accounts-library {UI} @MANAGER >>> ' +
-    '(+) verify accounts library ui elements >>>', function() {
+    '(+) verify agency accounts library ui elements >>>', function() {
 
     // disable mocha time outs
     this.timeout(driverTimeOut);
@@ -63,7 +63,6 @@ describe('<SMOKE-PROD> {{MAVERICK}} /accounts-library {UI} @MANAGER >>> ' +
         loginPage.login(targetServer, targetUser);
         navBar.clickInternalTools();
         usersLibrary.clickAccountsSideBar();
-        accountsLibrary.waitUntilSpinnerDissapear();
         accountsLibrary.waitUntilSpinnerNotVisible();
         driver.sleep(driverTimeOut).then(() => done());
     });
@@ -88,7 +87,6 @@ describe('<SMOKE-PROD> {{MAVERICK}} /accounts-library {UI} @MANAGER >>> ' +
 
     it('should show expected element after filtering table', function(done) {
         accountsLibrary.setSearchField('iniTestAgency');
-        accountsLibrary.waitUntilFilterNotVisible();
         expect(accountsLibrary.getFirstTableName()).to.exist;
         accountsLibrary.getFirstTableName().getText().
             then(function(getText) {
@@ -101,7 +99,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /accounts-library {UI} @MANAGER >>> ' +
     });
 
     it('should show table after removing filter added', function(done) {
-        accountsLibrary.removeFilterOption();
+        accountsLibrary.removeFilterOption('iniTestAgency');
         accountsLibrary.noRemoveFilterOptionDisplayed()
             .then(function(arr) {
                 expect(arr).to.be.empty;

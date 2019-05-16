@@ -89,6 +89,7 @@ describe('<SMOKE> {{MAVERICK}} /accounts-form {CREATE} @MANAGER >>> ' +
             account = Object.assign({}, accountTestFixture);
             account.name += timeStamp;
             account.salesforceId = timeStamp + timeStamp;
+            accountsLibrary.waitUntilSpinnerContainerNotVisible();
             accountsLibrary.clickCreateAccountButton();
             mediaGroupForm.selectMediaGroupType();
             mediaGroupForm.fillMonetizationsRequiredFields(account);
@@ -109,6 +110,7 @@ describe('<SMOKE> {{MAVERICK}} /accounts-form {CREATE} @MANAGER >>> ' +
             account.monthlyMinimum = 3;
             account.directSoldFee = 1;
             account.cname += 'a';
+            accountsLibrary.waitUntilSpinnerContainerNotVisible();
             accountsLibrary.clickCreateAccountButton();
             mediaGroupForm.selectMediaGroupType();
             mediaGroupForm.fillRequiredFields(account);
