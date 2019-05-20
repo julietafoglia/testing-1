@@ -74,6 +74,7 @@ describe('<SMOKE> {{MAVERICK}} /accounts-form {EDIT} @MANAGER >>> ' +
 
     it('should navigate to Accounts at Internal Tools section', function(done) {
         loginPage.login(targetServer, targetUser);
+        navBar.closeOuterDiv();
         navBar.clickInternalTools();
         usersLibrary.clickAccountsSideBar();
         accountsLibrary.waitSpinnerUntilStale();

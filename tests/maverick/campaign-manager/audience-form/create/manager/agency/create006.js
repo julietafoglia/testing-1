@@ -67,6 +67,7 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     });
 
     it('it should navigate to audiences page', function(done) {
+        sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();
         audCards.clickRemoveFromSegment();

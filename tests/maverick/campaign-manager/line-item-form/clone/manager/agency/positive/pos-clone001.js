@@ -92,6 +92,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('should navigate to copy page', function(done) {
+        advDetsPage.closeOuterDiv();
         advDetsPage.navigate(targetServer, 'advertisers',
             targetAdvertiser.refId);
         advDetsPage.clickIo(targetIo.name);
@@ -105,6 +106,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('line item should be copied - minimum required', function(done) {
+        lineItemPage.closeOuterDiv();
         lineItemPage.waitOverlayUntilStale();
         lineItemPage.setName(testData001.name);
         lineItemPage.setBudget(testData001.budget);
