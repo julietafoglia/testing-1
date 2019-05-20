@@ -469,7 +469,7 @@ BasePage.prototype.closeOuterDiv = function() {
     return new promise.Promise((resolve) => {
         this.driver.wait(until.elementLocated(CLOSE_BTN_OUTER), TIMEOUT)
             .then((element) => {
-                resolve(this.clickLastElement(CLOSE_BTN_OUTER));
+                resolve(element.click());
             })
             .catch(err=>[err]);
     }, this.driver.controlFlow());
