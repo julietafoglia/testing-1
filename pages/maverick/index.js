@@ -466,8 +466,25 @@ BasePage.prototype.getContentNGModel = function(locator) {
 };
 
 BasePage.prototype.closeOuterDiv = function() {
-    return this.clickSpan('Close');
+    return new promise.Promise((resolve) => {
+        this.driver.wait(until.elementLocated(CLOSE_BTN_OUTER), TIMEOUT)
+            .then((element) => {
+                resolve(this.clickLastElement(CLOSE_BTN_OUTER));
+            })
+            .catch(err=>[err]);
+    }, this.driver.controlFlow());
 };
+
+BasePage.prototype.closeLastOuterDiv = function() {
+    return new promise.Promise((resolve) => {
+        this.driver.wait(until.elementLocated(CLOSE_BTN_OUTER), TIMEOUT)
+            .then((element) => {
+                // console.log(element);
+                resolve(this.clickLastElement(CLOSE_BTN_OUTER));
+            })
+            .catch(err=>[err]);
+    }, this.driver.controlFlow());
+ };
 
 BasePage.prototype.getDateTimeFromData = function(time) {
     if (time.split(':')[0] >= 12) {
