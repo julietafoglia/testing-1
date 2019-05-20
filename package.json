@@ -54,4 +54,3 @@
     "posttest": "gulp teardown --env=${NODE_ENV}"
   }
 }
-BasePage.prototype.closeLastOuterDiv = function() {
