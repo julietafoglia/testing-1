@@ -466,13 +466,7 @@ BasePage.prototype.getContentNGModel = function(locator) {
 };
 
 BasePage.prototype.closeOuterDiv = function() {
-    return new promise.Promise((resolve) => {
-        this.driver.wait(until.elementLocated(CLOSE_BTN_OUTER), TIMEOUT)
-            .then((element) => {
-                resolve(element.click());
-            })
-            .catch(err=>[err]);
-    }, this.driver.controlFlow());
+    return this.clickSpan('Close');
 };
 
 BasePage.prototype.getDateTimeFromData = function(time) {
