@@ -52,7 +52,7 @@ const testFixture = require(rootPath + '/fixtures/common/audience/create001');
 let testData002 = Object.assign({}, testFixture);
 const audienceName = testData002.name + timeStamp;
 
-describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+describe('<SMOKI> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     '(+) create URL based audience >>>', function() {
 
     // disable mocha time outs
@@ -79,7 +79,7 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     });
 
     it('it should navigate to URL based audience page', function(done) {
-        sideBar.closeOuterDiv();
+        sideBar.closeLastOuterDiv();
         sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();

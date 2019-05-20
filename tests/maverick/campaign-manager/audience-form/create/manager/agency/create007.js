@@ -47,7 +47,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+describe('<SMOKI> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     '(+) Expand deterministically >>>', function() {
 
     // disable mocha time outs
@@ -73,7 +73,7 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     });
 
     it('it should navigate to det expansion audience page', function(done) {
-        sideBar.closeOuterDiv();
+        sideBar.closeLastOuterDiv();
         sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();

@@ -41,7 +41,7 @@ const driverBuilder = require(rootPath + '/helpers/driver-builder');
 // fixtures(s)
 const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+describe('<SMOKI> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     '(+) remove from segment >>>', function() {
 
     // disable mocha time outs
@@ -67,7 +67,7 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     });
 
     it('it should navigate to audiences page', function(done) {
-        sideBar.closeOuterDiv();
+        sideBar.closeLastOuterDiv();
         sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();
