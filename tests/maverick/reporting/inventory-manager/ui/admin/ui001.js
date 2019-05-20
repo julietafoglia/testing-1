@@ -55,6 +55,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /reports {ui} @ADMIN >>> (+)' +
     });
 
     it('should go to reports landing page', function(done) {
+        navBar.closeLastOuterDiv();
         navBar.closeOuterDiv();
         navBar.clickReportingTab();
         reportsPage.waitUntilSpinnerNotPresent();

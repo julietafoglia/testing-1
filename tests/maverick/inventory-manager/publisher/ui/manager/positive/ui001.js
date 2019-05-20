@@ -83,6 +83,7 @@ function() {
         let url = targetServer + targetEndpoint.inventoryDashboard;
         dashboardPage.goto(url);
         dashboardPage.waitUntilSpinnerNotVisible();
+        dashboardPage.closeLastOuterDiv();
         dashboardPage.closeOuterDiv();
         expect(dashboardPage.getCreatePublisherButton()).to.exist;
         driver.sleep(driverTimeOut).then(() => done());

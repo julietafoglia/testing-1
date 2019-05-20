@@ -56,6 +56,7 @@ describe('<> {{MAVERICK}} /audience-library {UI} @MANAGER >>> ' +
     });
 
     it('should navigate to audiences page', function(done) {
+        sideBar.closeLastOuterDiv();
         sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         // audiencesLibrary.waitUntilFilterNotVisible();

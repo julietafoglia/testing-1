@@ -61,6 +61,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /forecasting {UI} @MANAGER >>> ' +
 
     it('should check forecasting details elements', function(done) {
         navBarPage.clickInventoryManager();
+        navBarPage.closeLastOuterDiv();
         navBarPage.closeOuterDiv();
         sideBarPage.clickForecastingLink();
 

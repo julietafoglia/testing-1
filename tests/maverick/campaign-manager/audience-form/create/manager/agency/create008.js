@@ -47,7 +47,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKI> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     '(+) Expand probabilistically >>>', function() {
 
     // disable mocha time outs

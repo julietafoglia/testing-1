@@ -82,6 +82,7 @@ describe('<SMOKE> {{MAVERICK}} /campaign {create} @MANAGER >>> ' +
 
         advDetsPage.navigate(targetServer, 'advertisers', targetAdv.refId);
         advDetsPage.waitUntilLoaderNotVisible();
+        advDetsPage.closeLastOuterDiv();
         advDetsPage.closeOuterDiv();
         advDetsPage.clickIo(targetIo.name);
         campaignDetailsPage.clickNewCampaign();

@@ -60,6 +60,7 @@ describe('<SMOKE> {{MAVERICK}} /reporting {UI} @MANAGER >>> ' +
 
     it('should access reports section and open create modal', function(done) {
         loginPage.login(targetServer, targetUser);
+        navBar.closeLastOuterDiv();
         navBar.closeOuterDiv();
         navBar.clickReportingTab();
         reportsPage.waitUntilSpinnerNotPresent();

@@ -94,6 +94,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('should navigate to copy page', function(done) {
+        advDetsPage.closeLastOuterDiv();
         lineItemPage.closeOuterDiv();
         advDetsPage.navigate(targetServer, 'advertisers',
             targetAdvertiser.refId);

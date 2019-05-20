@@ -52,7 +52,7 @@ const testFixture = require(rootPath + '/fixtures/common/audience/create001');
 let testData002 = Object.assign({}, testFixture);
 const audienceName = testData002.name + timeStamp;
 
-describe('<SMOKI> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
+describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
     '(+) create URL based audience >>>', function() {
 
     // disable mocha time outs

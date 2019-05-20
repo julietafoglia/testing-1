@@ -85,6 +85,7 @@ describe('<SMOKE> {{MAVERICK}} inventory manager - newsletter' +
         let url = targetServer + util.format(
             targetEndpoint.publisherDetails, publisher.refId
         );
+        publisherDetailsPage.closeLastOuterDiv();
         publisherDetailsPage.closeOuterDiv();
         publisherDetailsPage
             .goto(url)

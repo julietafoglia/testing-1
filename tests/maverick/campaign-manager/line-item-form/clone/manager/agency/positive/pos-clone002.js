@@ -88,6 +88,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('should navigate to line item form', function(done) {
+        advDetsPage.closeLastOuterDiv();
         advDetsPage.closeOuterDiv();
         advDetsPage.navigate(targetServer, 'advertisers',
             targetAdvertiser.refId);
@@ -99,6 +100,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('should create test line item', function(done) {
+        lineItemPage.closeLastOuterDiv();
         lineItemPage.closeOuterDiv();
         lineItemPage.waitUntilLoaderNotVisible();
         expect(lineItemPage.getChooseThirdPartyDataSegment()).to.exist;
