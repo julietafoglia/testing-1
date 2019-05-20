@@ -74,6 +74,7 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
 
     it('it should navigate to det expansion audience page', function(done) {
         sideBar.closeOuterDiv();
+        sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();
         audCards.clickExpansionDet();
