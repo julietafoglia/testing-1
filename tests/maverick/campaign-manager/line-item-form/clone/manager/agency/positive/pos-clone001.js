@@ -109,6 +109,7 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     it('line item should be copied - minimum required', function(done) {
         lineItemPage.closeLastOuterDiv();
         lineItemPage.closeOuterDiv();
+        lineItemPage.closeOuterDiv();
         lineItemPage.waitOverlayUntilStale();
         lineItemPage.setName(testData001.name);
         lineItemPage.setBudget(testData001.budget);
