@@ -74,6 +74,8 @@ describe('<SMOKI> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
     it('should navigate to Internal Tools section', function(done) {
         loginPage.login(targetServer, targetUser);
         navBar.closeLastOuterDiv();
+        navBar.closeLastOuterDiv();
+        navBar.closeOuterDiv();
         navBar.closeOuterDiv();
         navBar.clickInternalTools();
         expect(usersLibrary.getTitleUsers()).to.exist;
