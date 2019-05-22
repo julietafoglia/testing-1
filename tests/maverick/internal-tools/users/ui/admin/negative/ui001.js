@@ -51,7 +51,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
+describe('<SMOKI> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
     '(-) verify negative cases for users library ui elements >>>', function() {
 
     // disable mocha time outs
