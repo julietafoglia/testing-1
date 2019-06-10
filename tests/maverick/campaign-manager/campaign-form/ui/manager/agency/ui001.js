@@ -47,8 +47,8 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /campaign-manager/campaign-form {ui} @MANAGER >>> ' +
-    '(+) verify ui elements - branding - clicks >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/campaign-form {ui} ' +
+    '@MANAGER >>> (+) verify ui elements - branding - clicks >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -75,7 +75,6 @@ describe('{{MAVERICK}} /campaign-manager/campaign-form {ui} @MANAGER >>> ' +
 
     it('should contain all elements for branding - clicks', function(done) {
         advDetsPage.navigate(targetServer, 'advertisers', targetAdv.refId);
-        advDetsPage.closeLastOuterDiv();
         advDetsPage.closeOuterDiv();
         advDetsPage.clickIo(targetIo.name);
         campaignDetailsPage.clickNewCampaign();

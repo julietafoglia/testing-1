@@ -46,7 +46,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /campaign-manager/campaign-form {ui}' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/campaign-form {ui}' +
     ' @SS-AGENCY-ADVERTISER >>> ' +
     '(+) verify ui elements - performance - max clicks >>>', function() {
 

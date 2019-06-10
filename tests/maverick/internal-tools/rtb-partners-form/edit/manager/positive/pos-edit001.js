@@ -36,7 +36,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /rtb-partners-form {Create} @MANAGER >>> ' +
+describe('<STABLE> {{MAVERICK}} /rtb-partners-form {Create} @MANAGER >>> ' +
     '(+) verify rtb-partners-form create process >>>', function() {
 
     // disable mocha time outs

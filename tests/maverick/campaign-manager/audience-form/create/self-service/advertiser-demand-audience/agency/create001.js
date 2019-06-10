@@ -47,7 +47,7 @@ const driverBuilder = require(rootPath + '/helpers/driver-builder');
 // fixtures(s)
 const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-describe('{{MAVERICK}} /audience-form {create} @SS-AGENCY >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /audience-form {create} @SS-AGENCY >>> ' +
     '(+) create live audience >>>', function() {
 
     // disable mocha time outs
@@ -73,6 +73,8 @@ describe('{{MAVERICK}} /audience-form {create} @SS-AGENCY >>> ' +
     });
 
     it('it should navigate to live audience page', function(done) {
+        sideBar.closeOuterDiv();
+        sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();
         audCards.clickCreateLiveAudience();

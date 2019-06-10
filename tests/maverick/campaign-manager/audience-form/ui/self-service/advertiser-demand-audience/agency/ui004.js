@@ -45,7 +45,7 @@ const driverBuilder = require(rootPath + '/helpers/driver-builder');
 // fixtures(s)
 const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-describe('{{MAVERICK}} /audience-form {UI} @SS-AGENCY >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /audience-form {UI} @SS-AGENCY >>> ' +
     '(+) verify remove from segment ui elements >>>', function() {
 
     // disable mocha time outs

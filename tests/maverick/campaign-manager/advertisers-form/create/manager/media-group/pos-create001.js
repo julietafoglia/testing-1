@@ -52,7 +52,7 @@ testData001.admin = 'QA-All user';
 testData001.executive = 'QA-All user';
 testData001.categoryName = 'Personal Finance';
 
-describe('{{MAVERICK}} /advertisers {CREATE} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /advertisers {CREATE} @MANAGER >>> ' +
     '(+) create advertiser under media group account >>>', function() {
     // disable mocha time outs
     this.timeout(mochaTimeOut);

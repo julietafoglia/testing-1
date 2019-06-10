@@ -45,7 +45,7 @@ testData001.budget = (testData001.budget).
 testData001.bidAmount = (testData001.bidAmount).
     toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 
-describe('{{MAVERICK}} /campaign-details {UI} @SS-AGENCY >>> ' +
+describe('<STABLE> {{MAVERICK}} /campaign-details {UI} @SS-AGENCY >>> ' +
     '(+) verify campaign details ui elements >>>', function() {
 
     // disable mocha time outs

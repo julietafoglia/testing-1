@@ -55,7 +55,7 @@ testData001.name = testData001.name + timeStamp +
 const startDate = moment().format('MM/DD/YYYY');
 const endDate = moment().add(30, 'days').format('MM/DD/YYYY');
 
-describe('{{MAVERICK}} /campaign {create} @SS-AGENCY >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign {create} @SS-AGENCY >>> ' +
     '(+) performance - max conversions - minimum required >>>', function() {
 
     this.timeout(0);

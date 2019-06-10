@@ -8,9 +8,8 @@ const expect = chai.expect;
 const rootPath = process.env.ROOT_PATH;
 const usersTargetEnvironment = require(rootPath +
     '/bootstrap/entities-dsp.json');
-const targetUser = usersTargetEnvironment.agency002
-    .children.advertiser001
-    .children.advertiserUser001;
+const targetUser = usersTargetEnvironment.agency001
+    .children.agencyUser001;
 const driverTimeOut = 0;
 
 let driver; // initialized during test runtime
@@ -33,7 +32,13 @@ const TIME_GRANULARITY = ['Day', 'Week', 'Month', 'All'];
 
 const SPLITS = ['Demand Type', 'Advertiser ID', 'Advertiser Name',
     'Campaign ID', 'Campaign Name', 'Line Item ID', 'Line Item Name',
-    'Creative ID', 'Creative Name', 'Creative Size', 'Publisher ID'];
+    'Creative ID', 'Creative Name', 'Creative Size', 'Publisher ID',
+    'Publisher Domain', 'Publisher Name', 'Creative URL', 'ClickThrough URL',
+    'Campaign Start Date', 'Campaign End Date', 'Line Item Start Date',
+    'Line Item End Date', 'Status', 'Pacing', 'Guaranteed', 'Budget Type',
+    'Line Item Bid Amount', 'Campaign Bid Amount', 'Line Item Budget',
+    'Campaign Budget', 'Line Item Label', 'Campaign Label', 'Creative Label',
+    'Advertiser Label'];
 
 // maverick runtime variables
 const targetEnvironment =
@@ -43,7 +48,7 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 function buttonsDisabled() {
-    reportsPage.getRightButton().getAttribute('disabled')
+    reportsPage.getSaveReporButton().getAttribute('disabled')
         .then(function(attr) {
             expect(attr).to.exist;
         });
@@ -59,7 +64,7 @@ function assertDisplayedOptions(array) {
     reportsPage.dismissAction();
 }
 
-describe('{{MAVERICK}} campaign-manager/reporting {ui} @Self-service' +
+describe('<STABLE> {{MAVERICK}} campaign-manager/reporting {ui} @Self-service' +
     ' user >>> (+) external user visible options checks >>>', function() {
 
     // disable mocha time outs
@@ -98,10 +103,11 @@ describe('{{MAVERICK}} campaign-manager/reporting {ui} @Self-service' +
     });
 
     it('should assert report modal elements', function(done) {
-        expect(reportsPage.getReportNameField()).to.exist;
-        expect(reportsPage.getAllAdvertisersLink()).to.exist;
-        expect(reportsPage.getSplitsDropdown()).to.exist;
-        reportsPage.clickSplitsDropdown();
+        expect(reportsPage.getReportNameTextbox()).to.exist;
+        expect(reportsPage.getAllMyAdvertisersLink()).to.exist;
+        expect(reportsPage.getSpan('DSP Fee')).to.exist;
+        expect(reportsPage.getSplitsDropDown()).to.exist;
+        reportsPage.clickSplitsDropDown();
         assertDisplayedOptions(SPLITS);
         expect(reportsPage.getQueryRangeDropdown()).to.exist;
         reportsPage.clickQueryRangeDropdown();
@@ -109,12 +115,6 @@ describe('{{MAVERICK}} campaign-manager/reporting {ui} @Self-service' +
         expect(reportsPage.getGranularityDropdown()).to.exist;
         reportsPage.clickGranularityDropdown();
         assertDisplayedOptions(TIME_GRANULARITY);
-        driver.sleep(driverTimeOut).then(() => done());
-    });
-
-    it('should check DSPfee is not present', function(done) {
-        reportsPage.checkDSPFeeItsNotPresent()
-            .then((val) => { expect(val.length).to.equal(0); });
         driver.sleep(driverTimeOut).then(() => done());
     });
 

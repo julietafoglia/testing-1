@@ -37,7 +37,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /campaign-manager/campaign-goal {ui}' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/campaign-goal {ui}' +
     ' @SS-AGENCY >>> ' +
     '(+) verify campaign cards ui >>>', function() {
 

@@ -24,14 +24,17 @@ const ADDITIONAL_IAB_CATEGORIES = By.css(
 const SELECTED_ADDL_IAB_CATEGORY = By.xpath('//dropdown/div/div/ul/li');
 const ALLOW_EXCHANGE = By.xpath('//input[@name="newsletterExchangeAllow"]/..');
 const ADVANCED_SETTINGS = By.css('a[title="Show Advanced Settings"]');
-const ADS_DIFF_SOURCES = By.xpath(
-    '//span[text()="Ads must be from different sources"]'
-);
 const ADS_DIFF_ADVS = By.xpath(
-    '//span[text()="Ads should be from different advertisers"]'
+    '//span[text()="Ads must be from different advertisers"]'
 );
-const ADS_DIFF_LINEITEMS = By.xpath(
-    '//span[text()="Ads should be from different line items"]'
+const RADIO_DIRECT_SOLD = By.xpath(
+    '//span[text()="For Exchange, RTB, Direct Sold, and House Demand"]'
+);
+const RADIO_EXCHANGE = By.xpath(
+    '//span[text()="For Exchange and RTB Demand"]'
+);
+const ADS_DIFF_EX_AND_RTB = By.xpath(
+    '//span[text()="For Exchange and RTB Demand"]/..'
 );
 const AD_SLOT_NAME = (idx) => By.xpath(
     `//ad-slot-form-group[${idx}]/div/div/div[1]/div[2]/input`
@@ -87,6 +90,8 @@ const ADD_AD_SLOT = By.css('a[title="Add Ad Slot"]');
 const CANCEL_BTN = By.xpath('//a[text()="Cancel"]');
 const CREATE_BTN = By.css('button[class="button--primary"]');
 const UPLOAD_BOX = By.css('div[class="upload empty"] input');
+const CATEGORY_DROPDOWN_ELEMENT = By.xpath('//searchable-select-single[@name="newsletterCategory"]' +
+    '/div/dropdown/div/div/div/div/ul/li/span/a');
 
 function NewsletterFormPage(webdriver) {
     this.driver = webdriver;
@@ -126,7 +131,13 @@ NewsletterFormPage.prototype.pickIabCategory = function(category) {
     this.sendKeys(IAB_CATEGORY, key.BACK_SPACE);
     this.getElement(IAB_CATEGORY).click();
     this.getElement(IAB_CATEGORY).click();
-    this.getDropDownOptions().click();
+    this.clickCategoryDropDownOptions();
+    return this;
+};
+
+NewsletterFormPage.prototype.clickCategoryDropDownOptions = function() {
+    this.waitUntilVisible(CATEGORY_DROPDOWN_ELEMENT);
+    this.findElement(CATEGORY_DROPDOWN_ELEMENT).click();
     return this;
 };
 
@@ -158,20 +169,35 @@ NewsletterFormPage.prototype.uncheckAllowExchange = function() {
 
 NewsletterFormPage.prototype.clickAdvancedSettings = function() {
     this.waitUntilVisible(ADVANCED_SETTINGS);
+    this.waitUntilOverlayNotVisible();
     this.findElement(ADVANCED_SETTINGS).click();
     return this;
 };
 
 NewsletterFormPage.prototype.checkDiffAdSources = function(option) {
-    this.waitUntilVisible(ADS_DIFF_SOURCES);
-    this.findElement(ADS_DIFF_SOURCES).click();
+    this.waitUntilVisible(ADS_DIFF_ADVS);
+    this.findElement(ADS_DIFF_ADVS).click();
     if (option === 1) {
-        this.waitUntilVisible(ADS_DIFF_ADVS);
-        this.findElement(ADS_DIFF_ADVS).click();
-    } else if (option === 2) {
-        this.waitUntilVisible(ADS_DIFF_LINEITEMS);
-        this.findElement(ADS_DIFF_LINEITEMS).click();
+        this.waitUntilVisible(ADS_DIFF_EX_RTB_DS_DEM);
+        this.findElement(ADS_DIFF_EX_RTB_DS_DEM).click();
+    } else {
+        this.waitUntilVisible(ADS_DIFF_EX_AND_RTB);
+        this.findElement(ADS_DIFF_EX_AND_RTB).click();
     }
+    return this;
+};
+
+NewsletterFormPage.prototype.checkDiffAdAdvertisers = function(option) {
+    this.waitUntilVisible(ADS_DIFF_ADVS);
+    this.findElement(ADS_DIFF_ADVS).click();
+    this.waitUntilVisible(RADIO_DIRECT_SOLD);
+    this.waitUntilVisible(RADIO_EXCHANGE);
+    return this;
+};
+
+NewsletterFormPage.prototype.clickRadioDirectSoldandHouse = function() {
+    this.waitUntilVisible(RADIO_DIRECT_SOLD);
+    this.click(RADIO_DIRECT_SOLD);
     return this;
 };
 

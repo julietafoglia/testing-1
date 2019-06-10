@@ -49,7 +49,7 @@ let testData001 = Object.assign({}, testFixture);
 testData001.startDate = moment().format('MMM D, YYYY');
 testData001.endDate = moment().add(30, 'days').format('MMM D, YYYY');
 
-describe('{{MAVERICK}} /insertion-order-details {UI} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /insertion-order-details {UI} @MANAGER >>> ' +
     '(+) verify insertion order table elements >>>', function() {
 
     // disable mocha time outs

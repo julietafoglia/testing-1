@@ -39,8 +39,8 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /line-item-details {DELETE} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) delete line item>>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /line-item-details {DELETE} ' +
+    '@SS-AGENCY-ADVERTISER >>> (+) delete line item>>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

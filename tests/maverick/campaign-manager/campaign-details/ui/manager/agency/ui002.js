@@ -59,7 +59,7 @@ let tableSpent = '$0.00';
 const campaignStartDate = moment().format('MMM D, YYYY');
 const campaignEndDate = moment().add(30, 'days').format('MMM D, YYYY');
 
-describe('{{MAVERICK}} /campaign-details {UI} @MANAGER >>> ' +
+describe('<STABLE> {{MAVERICK}} /campaign-details {UI} @MANAGER >>> ' +
     '(+) verify campaign details ui elements >>>', function() {
 
     // disable mocha time outs

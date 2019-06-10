@@ -57,7 +57,7 @@ const testFixture =
 let testData001 = Object.assign({}, testFixture);
 testData001.name = targetLineItem + ' (edit)';
 
-describe('{{MAVERICK}} /line-item {edit} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /line-item {edit} @MANAGER >>> ' +
     '(+) edit - positive targets for negative >>>', function() {
 
     // disable mocha time outs

@@ -52,7 +52,7 @@ let testData001 = Object.assign({}, testFixture);
 testData001.name = targetCam.name + '@v2 EDITED';
 
 // removing from smoke due to failures on jenkins
-describe('{{MAVERICK}} /campaign-manager/' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/' +
     'campaign-form {edit} @MANAGER >>> ' +
     '(+) direct sold - perf max reach - basic verification>>>', function() {
 

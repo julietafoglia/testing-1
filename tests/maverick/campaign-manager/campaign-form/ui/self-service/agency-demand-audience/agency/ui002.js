@@ -43,7 +43,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /campaign-manager/campaign-form {ui}' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/campaign-form {ui}' +
     ' @SS-AGENCY >>> ' +
     '(+) verify ui elements - branding - conversions >>>', function() {
 

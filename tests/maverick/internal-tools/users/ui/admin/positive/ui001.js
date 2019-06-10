@@ -40,8 +40,8 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
-    '(+) verify users library ui elements >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /users {UI} @MANAGER >>> ' +
+    '(+) verify users form ui elements >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);
@@ -100,7 +100,7 @@ describe('<SMOKE-PROD> {{MAVERICK}} /users-library {UI} @MANAGER >>> ' +
                 expect(arr).to.be.empty;
             });
         usersForm.clickClose();
-        usersForm.waitSpinnerUntilStale();
+        usersForm.waitUntilSpinnerContainerNotVisible();
         driver.sleep(driverTimeOut).then(() => done());
     });
 

@@ -63,7 +63,7 @@ testData001.budget = 100;
 testData001.startDate = timeToday;
 testData001.endDate = moment().add(30, 'days').format('MM-DD-YYYY');
 
-describe('{{MAVERICK}} /line-item {create} @MANAGER >>> ' +
+describe('<STABLE> {{MAVERICK}} /line-item {create} @MANAGER >>> ' +
     '(+) create - daily cap >>>', function() {
 
     // disable mocha time outs

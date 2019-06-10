@@ -166,6 +166,7 @@ NewsletterDetailsPage.prototype.getTagCode = function() {
 NewsletterDetailsPage.prototype.initiateDelete = function() {
     this.waitUntilVisible(DELETE_LINK);
     this.findElement(DELETE_LINK);
+    this.waitUntilOverlayNotVisible();
     this.findElement(DELETE_LINK).click();
     return this;
 };

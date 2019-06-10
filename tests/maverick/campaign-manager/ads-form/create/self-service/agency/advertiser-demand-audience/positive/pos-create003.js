@@ -46,7 +46,7 @@ const testFixture =
 let testData001 = Object.assign({}, testFixture);
 testData001.name = testData001.name + timeStamp + ' (marquee)';
 
-describe('{{MAVERICK}} /ads {create} @SS-AGENCY-ADVERTISER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /ads {create} @SS-AGENCY-ADVERTISER >>> ' +
     '(+) marquee ad >>>', function() {
 
     // disable mocha time outs

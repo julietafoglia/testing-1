@@ -43,8 +43,8 @@ const targetServer = targetEnvironment.server;
 
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /conversion-trackers {ui} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) create modal check >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /conversion-trackers {ui} ' +
+    '@SS-AGENCY-ADVERTISER >>> (+) create modal check >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

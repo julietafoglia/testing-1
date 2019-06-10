@@ -43,7 +43,7 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /buyer-seat-form {Edit} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /buyer-seat-form {Edit} @MANAGER >>> ' +
     '(+) verify buyer-seat-form edit process >>>', function() {
 
     // disable mocha time outs

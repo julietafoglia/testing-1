@@ -131,8 +131,8 @@ const ADD_ADVERTISERS_BTN = By.xpath('//button[contains(text(),' +
 const CLEAR_ALL_LINK_ADV = By.xpath('//a[contains(text(),"Clear All")]');
 const SELECTED_ADVERTISERS_TEXT = By.xpath('//span[text() = "Selected"]');
 const CAMPAIGN_TYPE_DROPDOWN = By.css('select-dropdown[name="campaignType"]');
-const DSP_CAMPAIGN_TYPE = By.xpath('//span[text() = "DSP"]');
-const SSP_CAMPAIGN_TYPE = By.xpath('//span[text() = "SSP"]');
+const DSP_CAMPAIGN_TYPE = By.xpath('//span[text() = "DSP Fee"]');
+const SSP_CAMPAIGN_TYPE = By.xpath('//span[text() = "SSP Fee"]');
 const SPLITS_DROPDOWN = By.css('multi-select[name="reportExactSplits"]' +
     ' div button span');
 const DEMAND_TYPE_OPT = By.xpath('//span[text() = "Demand Type"]');
@@ -183,6 +183,8 @@ const METRO_COUNTRY_REGION_OPT = By.xpath('//span[text() = ' +
     '"Metro/Country/Region"]');
 const DSP_FEE_CHK_BOX = By.xpath('//span[contains(text(),' +
     '"DSP Fee")]/parent::label');
+const SSP_FEE_CHK_BOX = By.xpath('//span[contains(text(),' +
+    '"SSP Fee")]/parent::label');
 const ADV_SPEND_CHK_BOX = By.xpath('//span[contains(text(),' +
     '"Advertiser Spend")]/parent::label');
 const PVC_CHK_BOX = By.xpath('//span[contains(text(),' +
@@ -197,6 +199,8 @@ const ECPA_CHK_BOX = By.xpath('//span[contains(text(),' +
     '"eCPA")]/parent::label');
 const ECPC_CHK_BOX = By.xpath('//span[contains(text(),' +
     '"eCPC")]/parent::label');
+const DISPLAYED_OPTIONS = By.xpath('//div[contains(@class,' +
+'"dropdown--container")]/ul/li');
 
 // native report fields
 const QUERY_RANGE_TEXT =
@@ -228,6 +232,8 @@ const ALL_OPTION = By.xpath('//span[text() = "All"]');
 const FIRST_LI_DROPDOWN_OPT = By.xpath(
     '//div[contains(@class,"dropdown--container ng-star-inserted")]' +
     '/ul/li/a/span');
+
+const SECTION_CARD = By.css('.section-card');
 
 // reports page funcion
 function ReportsPage(webdriver) {
@@ -522,6 +528,14 @@ ReportsPage.prototype.getDSPCampaignType = function() {
 
 ReportsPage.prototype.getSSPCampaignType = function() {
     return this.getElement(SSP_CAMPAIGN_TYPE);
+};
+
+ReportsPage.prototype.checkDSPFeeItsNotPresent = function() {
+    return this.findElement(DSP_FEE_CHK_BOX);
+};
+
+ReportsPage.prototype.checkSSPFeeItsNotPresent = function() {
+    return this.findElement(SSP_FEE_CHK_BOX);
 };
 
 ReportsPage.prototype.getSplitsDropDown = function() {
@@ -859,6 +873,10 @@ ReportsPage.prototype.waitUntilSaveButtonDisabled = function() {
     return this.waitUntilDisabled(SAVE_REPORT_BUTTON);
 };
 
+ReportsPage.prototype.getDisplayedOptions = function() {
+    return this.getElements(DISPLAYED_OPTIONS);
+};
+
 // Clicks
 ReportsPage.prototype.setReportName = function(name){
     this.getElement(REPORT_NAME_TEXTBOX).clear();
@@ -1136,4 +1154,7 @@ ReportsPage.prototype.searchReport = function(value) {
     return this.driver.sleep(2000);
 };
 
+ReportsPage.prototype.dismissAction = function(){
+    return this.waitAndClick(SECTION_CARD);
+};
 module.exports = ReportsPage;

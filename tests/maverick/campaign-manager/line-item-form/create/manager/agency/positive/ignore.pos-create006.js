@@ -54,7 +54,7 @@ let testData001 = Object.assign({}, testFixture);
 testData001.name = testData001.name + ' (direct sold targets positive)';
 testData001.status = 'paused';
 
-describe('{{MAVERICK}} /line-item {create} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /line-item {create} @MANAGER >>> ' +
     '(+) create - direct sold - targets positive >>>', function() {
 
     // disable mocha time outs

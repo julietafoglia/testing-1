@@ -44,7 +44,7 @@ let secondResultId;
 const FIRST_ADVERTISER = targetAdv1.name;
 const SECOND_ADVERTISER = targetAdv2.name;
 
-describe('{{MAVERICK}} /accounts-setup {ui} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /accounts-setup {ui} @MANAGER >>> ' +
     '(+) verify ui elements >>>', function() {
 
     // disable mocha time outs

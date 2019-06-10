@@ -29,7 +29,7 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
 // ads library table doesn't work on Stage
-describe('<> {{MAVERICK}} /campaign-manager {UI} @MANAGER >>> ' +
+describe('<STABLE> {{MAVERICK}} /campaign-manager {UI} @MANAGER >>> ' +
     '(+) verify ad library elements >>>', function() {
 
     // disable mocha time outs

@@ -68,8 +68,8 @@ const testFixture3 =
     rootPath + '/fixtures/common/creative/create010.jpg';
 
 
-describe('{{MAVERICK}} /line-item {create} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) create - ads >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /line-item {create} ' +
+    '@SS-AGENCY-ADVERTISER >>> (+) create - ads >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

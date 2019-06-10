@@ -354,7 +354,8 @@ MediaGroupFormPage.prototype.removeSecondFee = function() {
 };
 
 MediaGroupFormPage.prototype.clickSaveButton = function() {
-    return this.waitAndClick(SAVE_BTN);
+    this.waitAndClick(SAVE_BTN);
+    return this.waitUntilLoaderNotVisible();
 };
 
 MediaGroupFormPage.prototype.clickSpanCompletedField = function(text){

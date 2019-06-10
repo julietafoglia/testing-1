@@ -92,11 +92,14 @@ describe('<SMOKE> {{MAVERICK}} /audience-form {create} @MANAGER >>> ' +
         audPage.setInputAdvertiser(targetAdv.name);
         audPage.setInputAudienceName(audienceName);
         audDynPage.setInputRule('test rule');
+        audDynPage.setInputMemberLifetime(3);
         audPage.clickUpload();
         driver.sleep(driverTimeOut).then(() => done());
     });
 
-    xit('audience should be created', function(done) {
+    it('audience should be created', function(done) {
+        expect(audLibrary.getTitle(audienceName)).to.exist;
+        sideBar.clickAudiencesLink();
         audLibrary.setInputSearch(audienceName);
         expect(audLibrary.getLinkText(audienceName)).to.exist;
         driver.sleep(driverTimeOut).then(() => done());

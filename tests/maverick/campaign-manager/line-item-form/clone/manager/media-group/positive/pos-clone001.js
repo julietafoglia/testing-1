@@ -94,11 +94,12 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('should navigate to copy page', function(done) {
-        advDetsPage.closeLastOuterDiv();
-        advDetsPage.closeOuterDiv();
         advDetsPage.navigate(targetServer, 'advertisers',
             targetAdvertiser.refId);
+        advDetsPage.closeLastOuterDiv();
+        advDetsPage.closeOuterDiv();
         advDetsPage.clickIo(targetIo.name);
+        ioDetailsPage.setInputSearchCampaign(targetCampaign.name);
         ioDetailsPage.clickCampaign(targetCampaign.name);
         campaignDetailsPage.waitUntilOverlayNotVisible();
         campaignDetailsPage.setInputSearch(targetLineItem.name);
@@ -109,8 +110,6 @@ describe('<SMOKE> {{MAVERICK}} /line-item {clone} @MANAGER >>> ' +
     });
 
     it('line item should be copied - minimum required', function(done) {
-        lineItemPage.closeLastOuterDiv();
-        lineItemPage.closeOuterDiv();
         lineItemPage.waitOverlayUntilStale();
         lineItemPage.setName(testData001.name);
         lineItemPage.setBudget(testData001.budget);

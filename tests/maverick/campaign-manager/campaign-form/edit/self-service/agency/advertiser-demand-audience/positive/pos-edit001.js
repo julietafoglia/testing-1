@@ -53,7 +53,7 @@ testData001.name = targetCam.name + '@v2 EDITED';
 const startDate = moment().format('MM/DD/YYYY hh:mm AM');
 const endDate = moment().add(30, 'days').format('MM/DD/YYYY hh:mm PM');
 
-describe('{{MAVERICK}} /campaign-manager/' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/' +
     'campaign-form {edit} @SS-AGENCY-ADVERTISER >>> ' +
     '(+) basic verification - edit name >>>', function() {
 

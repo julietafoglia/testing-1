@@ -9,11 +9,12 @@ const webdriver = require('selenium-webdriver');
 const By = webdriver.By;
 
 // buttons
-const BUTTON_CREATE_DEAL = By.xpath('//button[text() = "Create Deal"]');
+const BUTTON_CREATE_DEAL = By.css('.button--primary');
 const SECTION_CARD = By.css('.padding-large');
 const DEMAND_TYPE_DROPDOWN =
     By.css('.inline-block.ng-untouched.ng-pristine.ng-valid');
 const LIVE_AUDIENCE_DROPDOWN = By.name('liveAudienceTargeting');
+const DEVICE_ID_DROPDOWN = By.css('select-dropdown[name="deviceId"] div button');
 
 // headers
 const CREATE_DEAL_HEADER = By.xpath('//h4[text() = "Create Deal"]');
@@ -39,6 +40,11 @@ const LIVE_AUDIENCE_TEXTBOX =
     By.xpath('//input[@placeholder = "Search Your LiveAudiences"]');
 const DIRECT_SPAN = By.xpath('//span[text() = "Direct"]');
 const EXCHANGE_SPAN = By.xpath('//span[text() = "Exchange"]');
+const BUYER_TEXTBOX = By.xpath('//search-input[@placeholder = "Choose a Buyer"]' +
+    '/div/input');
+
+
+const SEARCH_ITEM = By.css('a.search--item');
 
 function DealsForm(webdriver) {
     BasePage.call(this, webdriver);
@@ -57,9 +63,15 @@ DealsForm.prototype.getSectionCard = function() {
     return this.findElement(SECTION_CARD);
 };
 
+DealsForm.prototype.clickName = function() {
+    this.waitUntilVisible(DEAL_NAME_TEXTBOX);
+    return this.click(DEAL_NAME_TEXTBOX);
+};
+
 DealsForm.prototype.clickCreateDeal = function() {
     this.waitUntilVisible(BUTTON_CREATE_DEAL);
-    return this.click(BUTTON_CREATE_DEAL);
+    this.findElement(BUTTON_CREATE_DEAL).click();
+    return this;
 };
 
 DealsForm.prototype.getCreateDealHeader = function() {
@@ -128,6 +140,11 @@ DealsForm.prototype.clickDemandTypeDropdown = function() {
     return this.click(DEMAND_TYPE_DROPDOWN);
 };
 
+DealsForm.prototype.clickDeviceIdDropdown = function() {
+    this.waitUntilVisible(DEVICE_ID_DROPDOWN);
+    return this.click(DEVICE_ID_DROPDOWN);
+};
+
 DealsForm.prototype.getAdvertiserDomainText = function() {
     this.waitUntilVisible(ADVERTISER_DOMAIN_TEXT);
     return this.findElement(ADVERTISER_DOMAIN_TEXT);
@@ -173,5 +190,41 @@ DealsForm.prototype.getLiveAudienceTextbox = function() {
     this.waitUntilVisible(LIVE_AUDIENCE_TEXTBOX);
     return this.findElement(LIVE_AUDIENCE_TEXTBOX);
 };
+
+DealsForm.prototype.fillDealName = function(value) {
+    this.waitUntilVisible(DEAL_NAME_TEXTBOX);
+    this.findElement(DEAL_NAME_TEXTBOX).sendKeys(value);
+    return this;
+};
+
+DealsForm.prototype.fillPackage = function(value) {
+    this.waitUntilVisible(PACKAGE_TEXTBOX);
+    this.findElement(PACKAGE_TEXTBOX).sendKeys(value);
+    this.waitUntilVisible(SEARCH_ITEM);
+    this.findElement(SEARCH_ITEM).click();
+    return this;
+};
+
+DealsForm.prototype.fillDealFloor = function(value) {
+    this.waitUntilVisible(DEAL_FLOOR_TEXTBOX);
+    this.findElement(DEAL_FLOOR_TEXTBOX).sendKeys(value);
+    return this;
+};
+
+DealsForm.prototype.fillDSP = function(value) {
+    this.waitUntilVisible(DSP_TEXTBOX);
+    this.findElement(DSP_TEXTBOX).sendKeys(value);
+    this.clickSpan(value);
+    return this;
+};
+
+DealsForm.prototype.fillBuyer = function(value) {
+    this.waitUntilVisible(BUYER_TEXTBOX);
+    this.findElement(BUYER_TEXTBOX).sendKeys(value);
+    this.clickSpan(value);
+    return this;
+};
+
+
 
 module.exports = DealsForm;

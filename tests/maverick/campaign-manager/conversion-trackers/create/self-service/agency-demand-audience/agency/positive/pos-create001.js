@@ -35,7 +35,7 @@ const targetServer = targetEnvironment.server;
 
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /conversion-trackers {create}' +
+describe('<UNSTABLE> {{MAVERICK}} /conversion-trackers {create}' +
     ' @SS-AGENCY-ADVERTISER >>> ' +
     '(+) create simple tracker >>>', function() {
 

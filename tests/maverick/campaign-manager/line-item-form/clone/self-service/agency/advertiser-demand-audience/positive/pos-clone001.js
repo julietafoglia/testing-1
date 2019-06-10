@@ -62,8 +62,8 @@ testData001.status = 'Paused';
 testData001.startDate = timeToday;
 testData001.endDate = moment().add(30, 'days').format('MM-DD-YYYY');
 
-describe('{{MAVERICK}} /line-item {clone} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) body - minimum required - agency >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /line-item {clone} @SS-AGENCY-ADVERTISER' +
+    ' >>> (+) body - minimum required - agency >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

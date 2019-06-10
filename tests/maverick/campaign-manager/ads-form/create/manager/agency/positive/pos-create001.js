@@ -44,7 +44,7 @@ testData001.name = testData001.name + timeStamp + ' (image)';
 const testFixture002 =
     rootPath + '/fixtures/common/creative/create010.jpg';
 
-describe('{{MAVERICK}} /ads {create} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /ads {create} @MANAGER >>> ' +
     '(+) image ad >>>', function() {
 
     // disable mocha time outs

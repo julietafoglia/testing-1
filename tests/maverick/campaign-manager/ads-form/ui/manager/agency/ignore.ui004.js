@@ -44,8 +44,8 @@ testData001.name = testData001.name + timeStamp + ' (livesense)';
 const ninetyChars = '01234567890123456789012345678901234567' +
     '89012345678901234567890123456789012345678901234567890';
 
-describe('{{MAVERICK}} /campaign-manager/ads-form {ui} @MANAGER >>> ' +
-    '(+) verify ui elements - native ad >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/ads-form ' +
+    '{ui} @MANAGER >>> (+) verify ui elements - native ad >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

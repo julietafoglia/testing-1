@@ -47,7 +47,7 @@ const driverBuilder = require(rootPath + '/helpers/driver-builder');
 // fixtures(s)
 const testData001 = rootPath + '/fixtures/common/audience/create004.csv';
 
-describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
     '(+) verify URL based audience ui elements >>>', function() {
 
     // disable mocha time outs
@@ -74,6 +74,8 @@ describe('{{MAVERICK}} /audience-form {UI} @MANAGER >>> ' +
     });
 
     it('it should navigate to URL based audience page', function(done) {
+        sideBar.closeLastOuterDiv();
+        sideBar.closeOuterDiv();
         sideBar.clickAudiencesLink();
         audLibrary.clickNewAudience();
         audCards.clickUrlAudience();

@@ -61,8 +61,8 @@ testData001.status = 'Paused';
 testData001.startDate = timeToday;
 testData001.endDate = moment().add(30, 'days').format('MM-DD-YYYY');
 // note: removed from SMOKE suite since it fails on jenkins
-describe('{{MAVERICK}} /line-item {edit} @SS-AGENCY-ADVERTISER >>> ' +
-    '(+) body - minimum required >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /line-item {edit} @SS-AGENCY-ADVERTISER' +
+    ' >>> (+) body - minimum required >>>', function() {
 
     // disable mocha time outs
     this.timeout(0);

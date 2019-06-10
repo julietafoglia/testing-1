@@ -57,7 +57,7 @@ let testData001 = Object.assign({}, testFixture);
 testData001.name = testData001.name + ' (targets negative)';
 testData001.status = 'paused';
 
-describe('{{MAVERICK}} /line-item {create} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /line-item {create} @MANAGER >>> ' +
     '(+) create - targets negative >>>', function() {
 
     // disable mocha time outs

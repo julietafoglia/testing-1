@@ -1,0 +1,7 @@
+{
+    "demandType": "direct",
+    "floor": 2,
+    "maidType": "site_only",
+    "name": "testDeal",
+    "packageId": 41
+}

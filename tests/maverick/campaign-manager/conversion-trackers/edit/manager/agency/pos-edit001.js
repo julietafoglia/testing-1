@@ -46,7 +46,7 @@ const targetServer = targetEnvironment.server;
 
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /conversion-trackers {edit} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /conversion-trackers {edit} @MANAGER >>> ' +
     '(+) should edit tracker >>>', function() {
 
     // disable mocha time outs

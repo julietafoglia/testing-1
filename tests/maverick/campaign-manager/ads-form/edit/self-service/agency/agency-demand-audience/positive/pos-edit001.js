@@ -36,7 +36,7 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 const editedAdName = '000 edited ad';
 
-describe('{{MAVERICK}} /ads {edit} @SS-AGENCY >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /ads {edit} @SS-AGENCY >>> ' +
     '(+) edit image ad >>>', function() {
 
     // disable mocha time outs

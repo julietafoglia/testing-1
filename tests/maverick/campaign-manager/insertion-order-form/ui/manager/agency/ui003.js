@@ -43,7 +43,7 @@ const targetServer =
     targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('<SMOKE> {{MAVERICK}} /insertion-order {UI} @MANAGER >>> ' +
+describe('<SMOKE-PROD> {{MAVERICK}} /insertion-order {UI} @MANAGER >>> ' +
     '(+) verify error messages >>>', function() {
 
     // disable mocha time outs

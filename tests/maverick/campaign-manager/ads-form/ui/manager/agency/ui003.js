@@ -43,7 +43,7 @@ const testFixture =
 let testData001 = Object.assign({}, testFixture);
 testData001.name = testData001.name + timeStamp + ' (marquee)';
 
-describe('{{MAVERICK}} /campaign-manager/ads-form {ui} @MANAGER >>> ' +
+describe('<STABLE> {{MAVERICK}} /campaign-manager/ads-form {ui} @MANAGER >>> ' +
     '(+) verify ui elements - marquee ad >>>', function() {
 
     // disable mocha time outs

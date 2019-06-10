@@ -65,6 +65,8 @@ const INHERIT_FLOOR_CHKBOX = By.xpath('//input[@name="inheritFloor"]' +
 const DEMAND_TITLE = By.xpath('//h5[contains(text(),"Demand")]');
 const TRANSPARENCY_TITLE = By.xpath('//h5[contains(text(),"Transparency")]');
 const PUB_FLOOR_TITLE = By.xpath('//h5[contains(text(),"Publisher Floor")]');
+const ESP_DROPDOWN_ELEMENT = By.xpath('//searchable-select-single[@name="esp"]' +
+    '/div/dropdown/div/div/div/div/ul/li/span/a');
 
 // Fallback Creatives
 const BUILD_ADS = By.xpath('//button[text()="Build Ads"]');
@@ -253,6 +255,7 @@ PublisherFormPage.prototype.pickIabCategory = function(category) {
     this.waitUntilVisible(IAB_CATEGORY);
     this.findElement(IAB_CATEGORY).click();
     this.sendKeys(IAB_CATEGORY, category);
+    this.findElement(IAB_CATEGORY).click();
     this.getDropDownOptions().click();
     return this;
 };
@@ -287,10 +290,18 @@ PublisherFormPage.prototype.selectESP = function(esp) {
     this.waitAndClick(ESP_INPUT);
     if (esp !== 'Other ESP') {
         this.sendKeys(ESP_INPUT, esp);
-        this.getDropDownOptions().click();
+        this.findElement(ESP_INPUT).click();
+        this.clickEspDropdownElement();
     } else {
         // TODO: other esp
     }
+    return this;
+};
+
+PublisherFormPage.prototype.clickEspDropdownElement = function() {
+    this.waitUntilVisible(ESP_DROPDOWN_ELEMENT);
+    this.waitUntilOverlayNotVisible();
+    this.findElement(ESP_DROPDOWN_ELEMENT).click();
     return this;
 };
 

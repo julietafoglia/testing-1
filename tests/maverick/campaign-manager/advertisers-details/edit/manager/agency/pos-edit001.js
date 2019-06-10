@@ -45,7 +45,7 @@ let testData001 = Object.assign({}, testFixture);
 testData001.name = targetAdvertiser.name + ' EDITED';
 
 
-describe('{{MAVERICK}} /advertisers {edit} @MANAGER >>> ' +
+describe('<UNSTABLE> {{MAVERICK}} /advertisers {edit} @MANAGER >>> ' +
     '(+) edit media group advertiser - minimum required >>>', function() {
 
     // disable mocha time outs

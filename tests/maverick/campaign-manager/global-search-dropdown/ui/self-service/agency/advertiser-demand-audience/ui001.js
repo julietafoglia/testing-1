@@ -40,7 +40,7 @@ const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 const textNoResults = 'asdasdasdasdasd';
 
-describe('{{MAVERICK}} /campaign-manager/' +
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/' +
     'global-search-dropdown {ui} @SS-AGENCY-ADVERTISER >>> ' +
     '(+) verify ui elements >>>', function() {
 

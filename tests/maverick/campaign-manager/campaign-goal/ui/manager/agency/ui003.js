@@ -45,8 +45,9 @@ const targetEnvironment =
 const targetServer = targetEnvironment.server;
 const driverBuilder = require(rootPath + '/helpers/driver-builder');
 
-describe('{{MAVERICK}} /campaign-manager/campaign-goal {ui} @MANAGER >>> ' +
-    '(+) performance - maximize conversions - ssp - edit >>>', function() {
+describe('<UNSTABLE> {{MAVERICK}} /campaign-manager/campaign-goal {ui} ' +
+    '@MANAGER >>> (+) performance - maximize conversions - ssp - edit >>>',
+function() {
 
     // disable mocha time outs
     this.timeout(0);
